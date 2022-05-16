@@ -41,7 +41,7 @@ public class QueteList extends Fragment {
         });
 
 
-        ListView MagasinListView = view.findViewById(R.id.QuestList);
+        ListView MagasinListView = view.findViewById(R.id.ListQuete);
         MagasinListView.setAdapter(new QueteAdapter(getContext(), allQueteList));
         return view;
     }

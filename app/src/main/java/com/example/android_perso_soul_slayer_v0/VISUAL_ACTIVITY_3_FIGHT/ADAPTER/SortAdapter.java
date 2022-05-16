@@ -65,9 +65,9 @@ public class SortAdapter extends BaseAdapter {
         view = inflater.inflate(R.layout.d_fragment_combat_sort, null);
         MonSort monSort = spellList.get(i);
 
-        String nomSpell = monSort.getSpell().getNom();
-        String statSpell = monSort.getSpell().getAttribut();
-        String numberStat = String.valueOf(monSort.getSpell().getGain());
+        String nomSpell = monSort.getSort().getNom();
+        String statSpell = monSort.getSort().getAttribut();
+        String numberStat = String.valueOf(monSort.getSort().getGain());
 
         TextView itemNomView = view.findViewById(R.id.NomSort);
         itemNomView.setText(nomSpell);

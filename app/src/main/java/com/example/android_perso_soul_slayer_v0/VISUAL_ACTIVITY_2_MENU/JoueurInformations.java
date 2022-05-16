@@ -59,7 +59,7 @@ public class JoueurInformations extends Fragment {
         mana.setText(joueur1.getMana() + "/" + joueur1.getMana_max() + " MANA" );
 
 
-        ListView MagasinListView = v.findViewById(R.id.EquipmentList);
+        ListView MagasinListView = v.findViewById(R.id.ListEquipement);
 
         
 

@@ -71,7 +71,7 @@ public class MagasinByType extends Fragment {
         });
 
 
-        ListView MagasinListView = result.findViewById(R.id.EquipmentList);
+        ListView MagasinListView = result.findViewById(R.id.ListEquipement);
         MagasinListView.setAdapter(new MagasinAdapter(getContext(), listEquipement, getActivity()));
 
 

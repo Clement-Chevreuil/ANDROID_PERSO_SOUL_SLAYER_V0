@@ -55,16 +55,14 @@ public class CombatActionsSort extends Fragment {
         Activity app = getActivity();
         MonSortDAO monSortDAO = new MonSortDAO(getContext());
         SortDAO SortDAO = new SortDAO(getContext());
-        SortDAO.allSpell(1);
-        List<MonSort> listSpellToUse = monSortDAO.getAllSpell(1);
-
+        SortDAO.allSort(1);
+        List<MonSort> listSpellToUse = monSortDAO.getAllSort(1);
 
         ListView listView = (ListView) result.findViewById(R.id.ListSort);
         listView.setAdapter(new SortAdapter(getContext(), listSpellToUse, app, getActivity().getSupportFragmentManager()));
 
         rootView.setBackgroundColor(Color.parseColor("#7948E1"));
         //textView.setText("Page numéro "+position);
-
 
         return result;
     }

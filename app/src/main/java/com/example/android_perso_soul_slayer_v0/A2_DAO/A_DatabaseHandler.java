@@ -14,7 +14,7 @@ public class A_DatabaseHandler extends SQLiteOpenHelper {
     private static final String vie = "vie";
     private static final String attaque = "attaque";
     private static final String experience = "experience";
-    private static final String money = "money";
+    private static final String argent = "argent";
     private static final String mana = "mana";
     private static final String manaMax = "mana_max";
     private static final String endurance = "endurance";
@@ -38,18 +38,18 @@ public class A_DatabaseHandler extends SQLiteOpenHelper {
                     + precision + " INTEGER,"
                     + vitesse + " INTEGER,"
                     + password + " TEXT,"
-                    + money + " INTEGER NULL);";
+                    + argent + " INTEGER NULL);";
 
     //EQUIPMENT
     private static final String nomTableEquipement = "Equipement";
-    private static final String idEquipement = "id_equipment";
-    private static final String nomEquipement = "nom_equipment";
-    private static final String descriptionEquipement = "description_equipment";
-    private static final String attributEquipement = "attribut_equipment";
-    private static final String gainEquipement = "gain_equipment";
-    private static final String typeEquipement = "type_equipment";
-    private static final String costEquipement = "cost_equipment";
-    private static final String buy = "buy_equipment";
+    private static final String idEquipement = "id_equipement";
+    private static final String nomEquipement = "nom_equipement";
+    private static final String descriptionEquipement = "description_equipement";
+    private static final String attributEquipement = "attribut_equipement";
+    private static final String gainEquipement = "gain_equipement";
+    private static final String typeEquipement = "type_equipement";
+    private static final String prixEquipement = "prix_equipement";
+    private static final String buy = "buy_equipement";
 
     private static final String reqCreateEquipement =
             "CREATE TABLE " + nomTableEquipement + " ("
@@ -58,42 +58,42 @@ public class A_DatabaseHandler extends SQLiteOpenHelper {
                     + attributEquipement + " TEXT,"
                     + gainEquipement +  " INTEGER,"
                     + typeEquipement + " INTEGER,"
-                    + costEquipement + " INTEGER,"
+                    + prixEquipement + " INTEGER,"
                     + buy + " INTEGER DEFAULT 0,"
                     + descriptionEquipement + " TEXT);";
 
     //Sort
-    private static final String nomTableSpell = "Spell";
-    private static final String idSpell = "id_spell";
-    private static final String nomSpell= "nom_spell";
-    private static final String descriptionSpell = "description_spell";
-    private static final String attributSpell = "attribut_spell";
-    private static final String gainSpell = "gain_spell";
-    private static final String typeSpell = "type_spell";
-    private static final String costSpell = "cost_spell";
-    private static final String quantitySpell = "quantity_spell";
-    private static final String manaSpell = "mana_spell";
+    private static final String nomTableSort = "Sort";
+    private static final String idSort = "id_sort";
+    private static final String nomSort= "nom_sort";
+    private static final String descriptionSort = "description_sort";
+    private static final String attributSort = "attribut_sort";
+    private static final String gainSort = "gain_sort";
+    private static final String typeSort = "type_sort";
+    private static final String prixSort = "prix_sort";
+    private static final String quantiteSort = "quantite_sort";
+    private static final String manaSort = "mana_sort";
 
-    private static final String reqCreateSpell =
-            "CREATE TABLE " + nomTableSpell + " ("
-                    + idSpell + " INTEGER PRIMARY KEY AUTOINCREMENT,"
-                    + nomSpell + " TEXT,"
-                    + attributSpell + " TEXT,"
-                    + gainSpell +  " INTEGER,"
-                    + typeSpell + " INTEGER,"
-                    + costSpell + " INTEGER,"
-                    + quantitySpell + " INTEGER DEFAULT 0,"
-                    + manaSpell + " INTEGER,"
-                    + descriptionSpell + " TEXT);";
+    private static final String reqCreateSort =
+            "CREATE TABLE " + nomTableSort + " ("
+                    + idSort + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+                    + nomSort + " TEXT,"
+                    + attributSort + " TEXT,"
+                    + gainSort +  " INTEGER,"
+                    + typeSort + " INTEGER,"
+                    + prixSort + " INTEGER,"
+                    + quantiteSort + " INTEGER DEFAULT 0,"
+                    + manaSort + " INTEGER,"
+                    + descriptionSort + " TEXT);";
 
     //Quete
     private static final String nomTableQuete = "Quete";
     private static final String idQuete = "id_quete";
     private static final String nomQuete = "nom_quete";
     private static final String niveauQuete = "niveau_quete";
-    private static final String moneyQuete = "money_quete";
-    private static final String monsterQuete = "monster_quete";
-    private static final String clearQuete = "clear_quete";
+    private static final String argentQuete = "argent_quete";
+    private static final String monstreQuete = "monstre_quete";
+    private static final String nombreQuete = "nombre_quete";
 
 
     private static final String reqCreateQuete =
@@ -101,13 +101,13 @@ public class A_DatabaseHandler extends SQLiteOpenHelper {
                     + idQuete + " INTEGER PRIMARY KEY AUTOINCREMENT,"
                     + nomQuete + " TEXT,"
                     + niveauQuete +  " INTEGER,"
-                    + moneyQuete + " INTEGER,"
-                    + clearQuete + " INTEGER,"
-                    + monsterQuete + " INTEGER);";
+                    + argentQuete + " INTEGER,"
+                    + nombreQuete + " INTEGER,"
+                    + monstreQuete + " INTEGER);";
 
     //MonEquipement
     private static final String nomTableMyEquipement = "MyEquipement";
-    private static final String idMyEquipement = "id_my_equipment";
+    private static final String idMyEquipement = "id_my_equipement";
     private static final String equip = "equip";
 
     private static final String reqCreateMyEquipement =
@@ -118,14 +118,14 @@ public class A_DatabaseHandler extends SQLiteOpenHelper {
                     + equip + " INTEGER);";
 
     //MonSort
-    private static final String nomTableMySpell = "MySpell";
-    private static final String idMySpell = "id_my_spell";
+    private static final String nomTableMySort = "MySort";
+    private static final String idMySort = "id_my_sort";
 
-    private static final String reqCreateMySpell =
-            "CREATE TABLE " + nomTableMySpell+ " ("
-                    + idMySpell + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+    private static final String reqCreateMySort =
+            "CREATE TABLE " + nomTableMySort+ " ("
+                    + idMySort + " INTEGER PRIMARY KEY AUTOINCREMENT,"
                     + idJoueur + " INTEGER,"
-                    + idSpell + " INTEGER);";
+                    + idSort + " INTEGER);";
 
     public A_DatabaseHandler(Context context, String nom, SQLiteDatabase.CursorFactory factory, int version) { super(context, nom, factory, version); }
 
@@ -134,10 +134,10 @@ public class A_DatabaseHandler extends SQLiteOpenHelper {
 
         db.execSQL(reqCreateJoueur);
         db.execSQL(reqCreateEquipement);
-        db.execSQL(reqCreateSpell);
+        db.execSQL(reqCreateSort);
         db.execSQL(reqCreateQuete);
         db.execSQL(reqCreateMyEquipement);
-        db.execSQL(reqCreateMySpell);
+        db.execSQL(reqCreateMySort);
 
     }
 
@@ -146,17 +146,17 @@ public class A_DatabaseHandler extends SQLiteOpenHelper {
 
         String reqSuppJoueur = "DROP TABLE IF EXISTS " + nomTableJoueur + reqCreateJoueur;
         String reqSuppObject =  "DROP TABLE IF EXISTS " + nomTableEquipement + reqCreateEquipement;
-        String reqSuppSpell =  "DROP TABLE IF EXISTS " + nomTableSpell + reqCreateSpell;
+        String reqSuppSort =  "DROP TABLE IF EXISTS " + nomTableSort + reqCreateSort;
         String reqSuppQuete =  "DROP TABLE IF EXISTS " + nomTableQuete + reqCreateQuete;
         String reqSuppMyEquipement =  "DROP TABLE IF EXISTS " + nomTableMyEquipement + reqCreateMyEquipement;
-        String reqSuppMySpell =  "DROP TABLE IF EXISTS " + nomTableMySpell + reqCreateMySpell;
+        String reqSuppMySort =  "DROP TABLE IF EXISTS " + nomTableMySort + reqCreateMySort;
 
         db.execSQL(reqSuppJoueur);
         db.execSQL(reqSuppObject);
         db.execSQL(reqSuppQuete);
         db.execSQL(reqSuppMyEquipement);
-        db.execSQL(reqSuppMySpell);
-        db.execSQL(reqSuppSpell);
+        db.execSQL(reqSuppMySort);
+        db.execSQL(reqSuppSort);
         onCreate(db);
 
     }

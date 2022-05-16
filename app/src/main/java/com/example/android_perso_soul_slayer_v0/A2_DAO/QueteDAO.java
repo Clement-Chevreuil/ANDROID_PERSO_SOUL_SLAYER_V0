@@ -17,9 +17,9 @@ public class QueteDAO extends A_DAOBase{
     private static final String idQuete = "id_quete";
     private static final String nomQuete = "nom_quete";
     private static final String niveauQuete = "niveau_quete";
-    private static final String moneyQuete = "money_quete";
-    private static final String monsterQuete = "monster_quete";
-    private static final String clearQuete = "clear_quete";
+    private static final String argentQuete = "argent_quete";
+    private static final String monstreQuete = "monstre_quete";
+    private static final String nombreQuete = "nombre_quete";
 
 
     public QueteDAO(Context pContext) {
@@ -33,9 +33,9 @@ public class QueteDAO extends A_DAOBase{
 
         values.put(nomQuete, quete.getNom());
         values.put(niveauQuete, quete.getNiveau());
-        values.put(monsterQuete, quete.getMonsterId());
-        values.put(moneyQuete, quete.getMoney());
-        values.put(clearQuete, quete.getClear());
+        values.put(monstreQuete, quete.getMonstre());
+        values.put(argentQuete, quete.getArgent());
+        values.put(nombreQuete, quete.getNombre());
 
         mDb.insert(nomTableQuete, null, values);
     }
@@ -45,7 +45,7 @@ public class QueteDAO extends A_DAOBase{
    public void update(Quete m) {
         open();
         ContentValues value = new ContentValues();
-        value.put(clearQuete, m.getClear() - 1);
+        value.put(nombreQuete, m.getNombre() - 1);
         mDb.update(nomTableQuete, value, idQuete  + " = ?", new String[] {String.valueOf(m.getId())});
         close();
     }
@@ -56,8 +56,8 @@ public class QueteDAO extends A_DAOBase{
         Cursor unCurseur;
         List<Quete> queteList = new ArrayList<>();
         if(i == 0) { unCurseur = mDb.rawQuery("SELECT * FROM Quete;", null); }
-        else if(i == 1) { unCurseur = mDb.rawQuery("SELECT * FROM Quete WHERE clear_quete != 0 OR clear_quete IS NOT NULL;", null); }
-        else if(i == 2) { unCurseur = mDb.rawQuery("SELECT * FROM Quete WHERE clear_quete = 0 OR clear_quete IS NULL;", null); }
+        else if(i == 1) { unCurseur = mDb.rawQuery("SELECT * FROM Quete WHERE nombre_quete != 0 OR nombre_quete IS NOT NULL;", null); }
+        else if(i == 2) { unCurseur = mDb.rawQuery("SELECT * FROM Quete WHERE nombre_quete = 0 OR nombre_quete IS NULL;", null); }
         else { unCurseur = mDb.rawQuery("SELECT * FROM Quete;", null); }
 
         if(unCurseur.getCount() == 0)
@@ -71,9 +71,9 @@ public class QueteDAO extends A_DAOBase{
                 quete.setId(unCurseur.getInt(unCurseur.getColumnIndex(idQuete)));
                 quete.setNom(unCurseur.getString(unCurseur.getColumnIndex(nomQuete)));
                 quete.setNiveau(unCurseur.getInt(unCurseur.getColumnIndex(niveauQuete)));
-                quete.setMoney(unCurseur.getInt(unCurseur.getColumnIndex(moneyQuete)));
-                quete.setMonsterId(unCurseur.getInt(unCurseur.getColumnIndex(monsterQuete)));
-                quete.setClear(unCurseur.getInt(unCurseur.getColumnIndex(clearQuete)));
+                quete.setArgent(unCurseur.getInt(unCurseur.getColumnIndex(argentQuete)));
+                quete.setMonstre(unCurseur.getInt(unCurseur.getColumnIndex(monstreQuete)));
+                quete.setNombre(unCurseur.getInt(unCurseur.getColumnIndex(nombreQuete)));
                 queteList.add(quete);
             }
             while (unCurseur.moveToNext());
@@ -102,9 +102,9 @@ public class QueteDAO extends A_DAOBase{
                 quete.setId(unCurseur.getInt(unCurseur.getColumnIndex(idQuete)));
                 quete.setNom(unCurseur.getString(unCurseur.getColumnIndex(nomQuete)));
                 quete.setNiveau(unCurseur.getInt(unCurseur.getColumnIndex(niveauQuete)));
-                quete.setMoney(unCurseur.getInt(unCurseur.getColumnIndex(moneyQuete)));
-                quete.setMonsterId(unCurseur.getInt(unCurseur.getColumnIndex(monsterQuete)));
-                quete.setClear(unCurseur.getInt(unCurseur.getColumnIndex(clearQuete)));
+                quete.setArgent(unCurseur.getInt(unCurseur.getColumnIndex(argentQuete)));
+                quete.setMonstre(unCurseur.getInt(unCurseur.getColumnIndex(monstreQuete)));
+                quete.setNombre(unCurseur.getInt(unCurseur.getColumnIndex(nombreQuete)));
         }
         this.close();
         return quete;
@@ -154,9 +154,9 @@ public class QueteDAO extends A_DAOBase{
             values1.put(idQuete, quete.getId());
             values1.put(nomQuete, quete.getNom());
             values1.put(niveauQuete, quete.getNiveau());
-            values1.put(monsterQuete, quete.getMonsterId());
-            values1.put(moneyQuete, quete.getMoney());
-            values1.put(clearQuete, quete.getClear());
+            values1.put(monstreQuete, quete.getMonstre());
+            values1.put(argentQuete, quete.getArgent());
+            values1.put(nombreQuete, quete.getNombre());
             mDb.insert(nomTableQuete, null, values1);
         }
 

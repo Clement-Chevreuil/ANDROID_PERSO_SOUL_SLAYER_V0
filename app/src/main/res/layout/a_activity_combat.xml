@@ -17,7 +17,7 @@
         android:background="@drawable/back_foreground" />
 
     <TextView
-        android:id="@+id/EnnemieNom"
+        android:id="@+id/NomEnnemie"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
@@ -54,11 +54,11 @@
             <TableRow>
 
                 <ProgressBar
-                    android:id="@+id/EnnemieVie"
+                    android:id="@+id/VieEnnemie"
                     style="?android:attr/progressBarStyleHorizontal"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/ennemieNom"
+                    android:layout_below="@+id/NomEnnemie"
                     android:layout_weight="1"
                     android:padding="5dp"
                     android:progress="100" />
@@ -67,10 +67,10 @@
                     android:id="@+id/PointVieEnnemie"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/ennemieNom"
+                    android:layout_below="@+id/NomEnnemie"
                     android:layout_gravity="center"
                     android:layout_margin="10dp"
-                    android:layout_toRightOf="@+id/ennemievie"
+                    android:layout_toRightOf="@+id/VieEnnemie"
                     android:layout_weight="0"
                     android:text="0/0" />
 
@@ -88,7 +88,7 @@
             <TableRow>
 
                 <ProgressBar
-                    android:id="@+id/EnnemieMana"
+                    android:id="@+id/ManaEnnemie"
                     style="?android:attr/progressBarStyleHorizontal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -101,7 +101,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
-                    android:layout_toRightOf="@id/EnnemieMana"
+                    android:layout_toRightOf="@id/ManaEnnemie"
                     android:layout_weight="0"
                     android:text="0/0" />
 
@@ -143,7 +143,7 @@
         android:padding="20px">
 
         <TextView
-            android:id="@+id/JoueurNom"
+            android:id="@+id/NomJoueur"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
@@ -154,13 +154,13 @@
             android:id="@+id/ZoneVieJoueur"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/JoueurNom"
+            android:layout_below="@+id/NomJoueur"
             android:layout_centerHorizontal="true">
 
             <TableRow>
 
                 <ProgressBar
-                    android:id="@+id/JoueurVie"
+                    android:id="@+id/VieJoueur"
                     style="?android:attr/progressBarStyleHorizontal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -192,7 +192,7 @@
             <TableRow>
 
                 <ProgressBar
-                    android:id="@+id/JoueurMana"
+                    android:id="@+id/ManaJoueur"
                     style="?android:attr/progressBarStyleHorizontal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -231,7 +231,7 @@
             android:layout_marginRight="8dp"/>
 
         <ProgressBar
-            android:id="@+id/JoueurExperience"
+            android:id="@+id/ExperienceJoueur"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@+id/TxtExperience"

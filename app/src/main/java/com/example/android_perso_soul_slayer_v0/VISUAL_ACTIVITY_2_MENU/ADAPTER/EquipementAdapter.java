@@ -71,11 +71,11 @@ public class EquipementAdapter extends BaseAdapter {
         String stat = monEquipement.getEquipement().getAttribut();
         String numberStat = String.valueOf(monEquipement.getEquipement().getGain());
 
-        TextView itemNomView = view.findViewById(R.id.EquipementNom);
+        TextView itemNomView = view.findViewById(R.id.NomEquipement);
         itemNomView.setText(nom);
-        TextView itemEquip = view.findViewById(R.id.EquipementEquip);
+        TextView itemEquip = view.findViewById(R.id.EquipEquipement);
         itemEquip.setText(equip);
-        TextView itemStat = view.findViewById(R.id.EquipementStat);
+        TextView itemStat = view.findViewById(R.id.StatEquipement);
         itemStat.setText(stat + " : " + numberStat);
 
         view.setOnClickListener(new View.OnClickListener() {

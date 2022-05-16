@@ -15,29 +15,29 @@ import java.util.List;
 public class EquipementDAO extends A_DAOBase {
 
     private static final String nomTableEquipement = "Equipement";
-    private static final String idEquipement = "id_equipment";
-    private static final String nomEquipement = "nom_equipment";
-    private static final String descriptionEquipement = "description_equipment";
-    private static final String attributEquipement = "attribut_equipment";
-    private static final String gainEquipement = "gain_equipment";
-    private static final String typeEquipement = "type_equipment";
-    private static final String costEquipement= "cost_equipment";
-    private static final String buy= "buy_equipment";
+    private static final String idEquipement = "id_equipement";
+    private static final String nomEquipement = "nom_equipement";
+    private static final String descriptionEquipement = "description_equipement";
+    private static final String attributEquipement = "attribut_equipement";
+    private static final String gainEquipement = "gain_equipement";
+    private static final String typeEquipement = "type_equipement";
+    private static final String prixEquipement= "prix_equipement";
+    private static final String quantiteEquipement= "quantite_equipement";
 
 
     public EquipementDAO(Context pContext) {
         super(pContext);
     }
-    public void add(Equipement equipement) {
+    public void add(Equipement e) {
 
         ContentValues values = new ContentValues();
 
-        values.put(idEquipement, equipement.getId());
-        values.put(nomEquipement, equipement.getNom());
-        values.put(descriptionEquipement, equipement.getDescription());
-        values.put(gainEquipement, equipement.getGain());
-        values.put(attributEquipement, equipement.getAttribut());
-        values.put(typeEquipement, equipement.getType());
+        values.put(idEquipement, e.getId());
+        values.put(nomEquipement, e.getNom());
+        values.put(descriptionEquipement, e.getDescription());
+        values.put(gainEquipement, e.getGain());
+        values.put(attributEquipement, e.getAttribut());
+        values.put(typeEquipement, e.getType());
         mDb.insert(nomTableEquipement, null, values);
     }
     public void delete(long id) {
@@ -45,23 +45,23 @@ public class EquipementDAO extends A_DAOBase {
         mDb.delete(nomTableEquipement, idEquipement + " = ?", new String[] {String.valueOf(id)});
         close();
     }
-    public void update(Equipement m) {
+    public void update(Equipement e) {
         open();
         ContentValues value = new ContentValues();
-        value.put(nomEquipement, m.getNom());
-        value.put(descriptionEquipement, m.getDescription());
-        value.put(gainEquipement, m.getGain());
-        value.put(attributEquipement, m.getAttribut());
-        value.put(typeEquipement, m.getType());
-        value.put(costEquipement, m.getCost());
-        value.put(buy, m.getQuantite());
-        mDb.update(nomTableEquipement, value, idEquipement  + " = ?", new String[] {String.valueOf(m.getId())});
+        value.put(nomEquipement, e.getNom());
+        value.put(descriptionEquipement, e.getDescription());
+        value.put(gainEquipement, e.getGain());
+        value.put(attributEquipement, e.getAttribut());
+        value.put(typeEquipement, e.getType());
+        value.put(prixEquipement, e.getPrix());
+        value.put(quantiteEquipement, e.getQuantite());
+        mDb.update(nomTableEquipement, value, idEquipement  + " = ?", new String[] {String.valueOf(e.getId())});
         close();
     }
     public void updateBuy(Equipement m) {
         open();
         ContentValues value = new ContentValues();
-        value.put(buy, m.getQuantite());
+        value.put(quantiteEquipement, m.getQuantite());
         mDb.update(nomTableEquipement, value, idEquipement  + " = ?", new String[] {String.valueOf(m.getId())});
         close();
     }
@@ -78,26 +78,26 @@ public class EquipementDAO extends A_DAOBase {
         {
             unCurseur = mDb.rawQuery("SELECT * " +
                     "FROM Equipement e " +
-                    "WHERE e.buy_equipment != 0 " +
-                    "AND e.id_equipment " +
+                    "WHERE e.buy_equipement != 0 " +
+                    "AND e.id_equipement " +
                     "NOT IN (" +
-                    "SELECT m.id_equipment " +
+                    "SELECT m.id_equipement " +
                     "FROM MyEquipement m, Equipement f " +
-                    "WHERE m.id_equipment = f.id_equipment " +
-                    "AND f.buy_equipment != -1) " +
-                    "AND e.type_equipment = '" + position + "';", null);
+                    "WHERE m.id_equipement = f.id_equipement " +
+                    "AND f.buy_equipement != -1) " +
+                    "AND e.type_equipement = '" + position + "';", null);
         }
         else
         { unCurseur = mDb.rawQuery("" +
                 "SELECT * " +
                 "FROM Equipement e " +
-                "WHERE e.buy_equipment != 0 " +
-                "AND e.id_equipment " +
+                "WHERE e.buy_equipement != 0 " +
+                "AND e.id_equipement " +
                 "NOT IN (" +
-                "SELECT m.id_equipment " +
+                "SELECT m.id_equipement " +
                 "FROM MyEquipement m, Equipement f " +
-                "WHERE m.id_equipment = f.id_equipment " +
-                "AND f.buy_equipment != -1) ;", null); }
+                "WHERE m.id_equipement = f.id_equipement " +
+                "AND f.prix_equipement != -1) ;", null); }
 
         if(unCurseur.getCount() == 0)
         {
@@ -113,8 +113,8 @@ public class EquipementDAO extends A_DAOBase {
                 equipement.setDescription(unCurseur.getString(unCurseur.getColumnIndex(descriptionEquipement)));
                 equipement.setGain(unCurseur.getInt(unCurseur.getColumnIndex(gainEquipement)));
                 equipement.setType(unCurseur.getInt(unCurseur.getColumnIndex(typeEquipement)));
-                equipement.setCost(unCurseur.getInt(unCurseur.getColumnIndex(costEquipement)));
-                equipement.setQuantite(unCurseur.getInt(unCurseur.getColumnIndex(buy)));
+                equipement.setPrix(unCurseur.getInt(unCurseur.getColumnIndex(prixEquipement)));
+                equipement.setQuantite(unCurseur.getInt(unCurseur.getColumnIndex(quantiteEquipement)));
                 allEquipement.add(equipement);
             }
             while (unCurseur.moveToNext());
@@ -164,16 +164,16 @@ public class EquipementDAO extends A_DAOBase {
         }
 
 
-        for (Equipement equipement : equipementList)
+        for (Equipement e : equipementList)
         {
             ContentValues values = new ContentValues();
-            values.put(nomEquipement, equipement.getNom());
-            values.put(descriptionEquipement, equipement.getDescription());
-            values.put(gainEquipement, equipement.getGain());
-            values.put(attributEquipement, equipement.getAttribut());
-            values.put(typeEquipement, equipement.getType());
-            values.put(costEquipement, equipement.getCost());
-            values.put(buy, equipement.getQuantite());
+            values.put(nomEquipement, e.getNom());
+            values.put(descriptionEquipement, e.getDescription());
+            values.put(gainEquipement, e.getGain());
+            values.put(attributEquipement, e.getAttribut());
+            values.put(typeEquipement, e.getType());
+            values.put(prixEquipement, e.getPrix());
+            values.put(quantiteEquipement, e.getQuantite());
             mDb.insert(nomTableEquipement, null, values);
         }
 

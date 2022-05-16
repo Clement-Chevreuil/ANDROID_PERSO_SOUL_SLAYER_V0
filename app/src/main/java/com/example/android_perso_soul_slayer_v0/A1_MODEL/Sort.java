@@ -8,30 +8,30 @@ public class Sort {
     public String description;
     public int gain;
     public int type;
-    public int cost;
+    public int prix;
     public int quantite;
     public int mana;
 
 
-    public Sort(int id, String nom, String attribut, int gain, int type, int cost, String description, int quantite, int mana) {
+    public Sort(int id, String nom, String attribut, int gain, int type, int prix, String description, int quantite, int mana) {
         this.id = id;
         this.nom = nom;
         this.attribut = attribut;
         this.description = description;
         this.gain = gain;
         this.type = type;
-        this.cost = cost;
+        this.prix = prix;
         this.quantite = quantite;
         this.mana = mana;
     }
 
-    public Sort(String nom, String attribut, int gain, int type, int cost, String description) {
+    public Sort(String nom, String attribut, int gain, int type, int prix, String description) {
         this.nom = nom;
         this.attribut = attribut;
         this.description = description;
         this.gain = gain;
         this.type = type;
-        this.cost = cost;
+        this.prix = prix;
     }
 
     public Sort(String nom) { this.nom = nom; }
@@ -40,7 +40,7 @@ public class Sort {
     }
     public Sort() {}
 
-    public int getCost() { return cost; }
+    public int getPrix() { return prix; }
     public int getId() {
         return id;
     }
@@ -57,10 +57,10 @@ public class Sort {
     public int getGain() {
         return gain;
     }
-    public int getQuantity() { return quantite; }
+    public int getQuantite() { return quantite; }
     public int getMana() { return mana; }
 
-    public void setCost(int cost) { this.cost = cost; }
+    public void setPrix(int prix) { this.prix = prix; }
     public void setId(int id) {
         this.id = id;
     }
@@ -77,6 +77,6 @@ public class Sort {
     public void setType(int type) {
         this.type = type;
     }
-    public void setQuantity(int quantite) { this.quantite = quantite; }
+    public void setQuantite(int quantite) { this.quantite = quantite; }
     public void setMana(int mana) { this.mana = mana; }
 }
