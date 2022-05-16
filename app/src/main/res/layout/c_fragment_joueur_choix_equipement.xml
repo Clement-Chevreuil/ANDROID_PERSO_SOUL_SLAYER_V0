@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".VISUAL_ACTIVITY_2_MENU.JoueurResume"
+    android:background="@color/purple">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center">
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/Colliers"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_margin="@dimen/margin_res"
+                android:background="@drawable/circle"
+                android:src="@mipmap/necklace_foreground" />
+
+
+            <ImageButton
+                android:id="@+id/Armures"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_margin="@dimen/margin_res"
+                android:background="@drawable/circle"
+                android:src="@mipmap/armor_foreground"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <ImageButton
+                android:id="@+id/Casques"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_margin="@dimen/margin_res"
+                android:background="@drawable/circle"
+                android:src="@mipmap/helmet_foreground"/>
+
+            <ImageView
+                android:id="@+id/Others"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_margin="@dimen/margin_res"/>
+
+            <ImageButton
+                android:id="@+id/Chaussures"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_margin="@dimen/margin_res"
+                android:background="@drawable/circle"
+                android:src="@mipmap/shoe_foreground"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <ImageButton
+                android:id="@+id/Gants"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_margin="@dimen/margin_res"
+                android:background="@drawable/circle"
+                android:src="@mipmap/glove_foreground"/>
+
+            <ImageButton
+                android:id="@+id/Armes"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_margin="@dimen/margin_res"
+                android:background="@drawable/circle"
+                android:src="@mipmap/sword_foreground"/>
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+</FrameLayout>

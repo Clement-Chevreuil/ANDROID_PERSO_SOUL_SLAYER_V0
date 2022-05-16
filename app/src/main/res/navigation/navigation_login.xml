@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_login"
+    app:startDestination="@id/loader">
+
+    <fragment
+        android:id="@+id/loader"
+        android:name="com.example.android_perso_soul_slayer_v0.VISUAL_ACTIVITY_1_LOGIN.Chargement"
+        android:label="fragment_loader"
+        tools:layout="@layout/b_fragment_chargement" >
+        <action
+            android:id="@+id/action_loader_to_loginEmail"
+            app:destination="@id/login_email" />
+    </fragment>
+    <fragment
+        android:id="@+id/login_email"
+        android:name="com.example.android_perso_soul_slayer_v0.VISUAL_ACTIVITY_1_LOGIN.ConnexionEmail"
+        android:label="fragment_login_email"
+        tools:layout="@layout/b_fragment_connection_1" >
+        <action
+            android:id="@+id/action_loginEmail_to_loginPassword"
+            app:destination="@id/login_password" />
+        <action
+            android:id="@+id/action_loginEmail_to_register"
+            app:destination="@id/register" />
+        <action
+            android:id="@+id/action_login_email_to_forgetPassword"
+            app:destination="@id/forgetPassword" />
+    </fragment>
+    <fragment
+        android:id="@+id/login_password"
+        android:name="com.example.android_perso_soul_slayer_v0.VISUAL_ACTIVITY_1_LOGIN.ConnexionPassword"
+        android:label="fragment_login_password"
+        tools:layout="@layout/b_fragment_connection_2" >
+        <action
+            android:id="@+id/action_loginPassword_to_register2"
+            app:destination="@id/register" />
+        <action
+            android:id="@+id/action_login_password_to_forgetPassword"
+            app:destination="@id/forgetPassword" />
+        <action
+            android:id="@+id/action_login_password_to_menu2"
+            app:destination="@id/menu" />
+    </fragment>
+    <fragment
+        android:id="@+id/register"
+        android:name="com.example.android_perso_soul_slayer_v0.VISUAL_ACTIVITY_1_LOGIN.Inscription"
+        android:label="fragment_register"
+        tools:layout="@layout/b_fragment_inscription" >
+        <action
+            android:id="@+id/action_register_to_loginEmail"
+            app:destination="@id/login_email" />
+        <action
+            android:id="@+id/action_register_to_forgetPassword"
+            app:destination="@id/forgetPassword" />
+    </fragment>
+    <fragment
+        android:id="@+id/forgetPassword"
+        android:name="com.example.android_perso_soul_slayer_v0.VISUAL_ACTIVITY_1_LOGIN.Oublie"
+        android:label="ForgetPassword" >
+        <action
+            android:id="@+id/action_forgetPassword_to_login_email"
+            app:destination="@id/login_email" />
+    </fragment>
+    <activity
+        android:id="@+id/menu"
+        android:name="com.example.android_perso_soul_slayer_v0.ACTIVITY.Menu"
+        android:label="activity_menu"
+        tools:layout="@layout/a_activity_menu" />
+</navigation>

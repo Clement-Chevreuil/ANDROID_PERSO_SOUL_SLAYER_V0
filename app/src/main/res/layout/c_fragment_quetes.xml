@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".VISUAL_ACTIVITY_2_MENU.QueteList"
+    android:background="@color/purple">
+
+
+
+    <ListView
+        android:id="@+id/QuestList"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="60dp"
+        tools:listitem="@layout/c_fragment_quete"
+        />
+
+
+
+</FrameLayout>

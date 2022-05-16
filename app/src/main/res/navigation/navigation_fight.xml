@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_fight"
+    app:startDestination="@id/fight2">
+
+    <fragment
+        android:id="@+id/fight2"
+        android:name="com.example.android_perso_soul_slayer_v0.VISUAL_ACTIVITY_3_FIGHT.Combat"
+        android:label="d_fragment_fight"
+        tools:layout="@layout/c_fragment_combat" />
+</navigation>

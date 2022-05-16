@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Soul-Slayer</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="name">Soul-Slayer</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_joueur">Joueur</string>
+    <string name="title_quest">Quest</string>
+    <string name="title_shop">Shop</string>
+
+    <string name="tab_text_1">Tab 1</string>
+    <string name="tab_text_2">Tab 2</string>
+    <string name="titre_section0">Printemps</string>
+    <string name="titre_section1">Ete</string>
+    <string name="titre_section2">Automne</string>
+    <string name="titre_section3">Hiver</string>
+    <string name="titre_section4">All</string>
+    <string name="action_settings" />
+</resources>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="questList1" type="string">Quest 1</item>
+    <item name="quete2" type="string">Quest 2</item>
+    <item name="quete3" type="string">Quest 3</item>
+
+    <array name="pageFighting">
+        <item>ACTION</item>
+        <item>OBJECT</item>
+        <item>SORT</item>
+    </array>
+
+    <array name="pageShop">
+        <item type="string" >OBJECT</item>
+        <item type="string">WEAPON</item>
+        <item type="string">ARMOR</item>
+        <item type="string">HELMET</item>
+        <item type="string">SHOE</item>
+        <item type="string">GLOVE</item>
+        <item type="string">NECKLACE</item>
+    </array>
+</resources>
+

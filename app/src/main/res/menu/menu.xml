@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <item
+        android:id="@+id/navigation_joueur"
+        android:icon="@drawable/character_foreground"
+        android:title="@string/title_joueur"
+        />
+
+    <item
+        android:id="@+id/navigation_quest"
+        android:icon="@drawable/map_foreground"
+        android:title="@string/title_quest" />
+
+    <item
+        android:id="@+id/navigation_shop"
+        android:icon="@drawable/shop_foreground"
+        android:title="@string/title_shop" />
+</menu>

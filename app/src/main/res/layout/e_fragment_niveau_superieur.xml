@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    android:id="@+id/niveau_up"
+
+    android:layout_width="500dp"
+    android:layout_height="match_parent"
+
+    android:layout_gravity="center"
+    android:gravity="center"
+    android:background="#8A7A488C"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <TextView
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:text="BRAVO VOUS AVEZ GAGNE UN NIVEAU"/>
+
+    <Button
+        android:id="@+id/Fermer"
+        android:text="o"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+
+</LinearLayout>

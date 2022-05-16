@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_menu"
+    app:startDestination="@id/quete">
+
+    <fragment
+        android:id="@+id/quete"
+        android:name="com.example.android_perso_soul_slayer_v0.VISUAL_ACTIVITY_2_MENU.QueteList"
+        android:label="fragment_quest"
+        tools:layout="@layout/c_fragment_quete" >
+        <action
+            android:id="@+id/action_quest_to_fight"
+            app:destination="@id/fight" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/Joueur"
+        android:name="com.example.android_perso_soul_slayer_v0.VISUAL_ACTIVITY_2_MENU.JoueurInformations"
+        android:label="c_fragment_joueur"
+        tools:layout="@layout/c_fragment_joueur_equipements" />
+    <activity
+        android:id="@+id/fight"
+        android:name="com.example.android_perso_soul_slayer_v0.ACTIVITY.Combat"
+        android:label="a_activity_fight"
+        tools:layout="@layout/a_activity_combat" />
+    <fragment
+        android:id="@+id/joueurResume"
+        android:name="com.example.android_perso_soul_slayer_v0.VISUAL_ACTIVITY_2_MENU.JoueurResume"
+        android:label="fragment_c_joueur2"
+        tools:layout="@layout/c_fragment_joueur_choix_equipement" >
+        <action
+            android:id="@+id/action_joueurResume2_to_joueur"
+            app:destination="@id/Joueur" />
+    </fragment>
+    <fragment
+        android:id="@+id/shop"
+        android:name="com.example.android_perso_soul_slayer_v0.VISUAL_ACTIVITY_2_MENU.Magasin"
+        android:label="c_fragment_shop"
+        tools:layout="@layout/c_fragment_magasin" />
+</navigation>

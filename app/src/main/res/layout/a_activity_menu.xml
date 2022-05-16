@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ACTIVITY.Menu"
+    android:background="@color/white">
+
+   <RelativeLayout
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:id="@+id/ZoneHaut"
+       android:background="@color/purple_shadow"
+       android:padding="30px">
+
+       <TextView
+           android:id="@+id/Niveau"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:gravity="center"
+           android:text="Niveau" />
+
+       <TextView
+           android:id="@+id/Nom"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_centerHorizontal="true"
+           android:gravity="center"
+           android:text="Nom" />
+
+       <TextView
+           android:id="@+id/Argent"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_alignParentRight="true"
+           android:gravity="center"
+           android:text="Money" />
+   </RelativeLayout>
+
+<RelativeLayout
+    android:id="@+id/ZoneStatistiques"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_below="@+id/ZoneHaut"
+    android:background="@color/purple_3"
+    android:padding="20px">
+    <TextView
+        android:id="@+id/Vie"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:text="vie"/>
+    <TextView
+        android:id="@+id/Attaque"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="ATK"/>
+    <TextView
+        android:id="@+id/Mana"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:text="MANA"/>
+</RelativeLayout>
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/Navigation"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/ZoneStatistiques"
+        app:navGraph="@navigation/navigation_menu"
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="1dp"
+
+        />
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/BottomNavigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="0dp"
+        android:layout_marginEnd="0dp"
+        android:theme="@style/BottomNavigationTheme"
+        android:background="?android:attr/windowBackground"
+        android:layout_alignParentBottom="true"
+        app:menu="@menu/menu" />
+
+
+</RelativeLayout>
