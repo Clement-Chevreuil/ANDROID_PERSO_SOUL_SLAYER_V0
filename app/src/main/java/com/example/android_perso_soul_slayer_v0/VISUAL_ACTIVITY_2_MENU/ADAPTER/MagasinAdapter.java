@@ -67,7 +67,7 @@ public class MagasinAdapter extends BaseAdapter {
         TextView itemCost = view.findViewById(R.id.PrixObjet);
         TextView itemStat = view.findViewById(R.id.StatObjet);
         itemNomView.setText(nom);
-        itemCost.setText("cout : " + String.valueOf(equipement.getCost()));
+        itemCost.setText("cout : " + String.valueOf(equipement.getPrix()));
         itemStat.setText(String.valueOf(equipement.getGain()) + " " + String.valueOf(equipement.getAttribut()));
 
         TextView quantite = view.findViewById(R.id.QuantiteObjet);
@@ -88,7 +88,7 @@ public class MagasinAdapter extends BaseAdapter {
                 joueurDAO = new JoueurDAO(context);
                 Joueur myJoueur  = joueurDAO.getMyJoueur();
 
-                if(myJoueur.getMoney() < equipementList.get(i).getCost())
+                if(myJoueur.getArgent() < equipementList.get(i).getPrix())
                 {
                     Toast toast = Toast.makeText(context, "NOT MONNEY", Toast.LENGTH_LONG);
                     toast.show();
@@ -104,12 +104,12 @@ public class MagasinAdapter extends BaseAdapter {
 
                     EquipementDAO equipementDAO = new EquipementDAO(context);
 
-                    int moneyJoueur = myJoueur.getMoney() - equipement.getCost();
-                    myJoueur.setMoney(moneyJoueur);
+                    int argentJoueur = myJoueur.getArgent() - equipement.getPrix();
+                    myJoueur.setArgent(argentJoueur);
                     joueurDAO.update(myJoueur);
 
-                    TextView money = app.findViewById(R.id.Argent);
-                    money.setText("Money : " + String.valueOf(moneyJoueur));
+                    TextView argent = app.findViewById(R.id.Argent);
+                    argent.setText("Argent : " + String.valueOf(argentJoueur));
 
                     TextView quantite = view.findViewById(R.id.QuantiteObjet);
                     if(equipement.getQuantite() == -1)

@@ -17,9 +17,9 @@ import com.example.android_perso_soul_slayer_v0.A1_MODEL.Joueur;
 
 public class Menu extends AppCompatActivity {
 
-    TextView nom, money, niveau;
+    TextView nom, argent, niveau;
     Context context;
-    TextView vie,mana,atk;
+    TextView vie, mana, attaque;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,26 +29,26 @@ public class Menu extends AppCompatActivity {
 
         context = this;
 
-        //GET MY Joueur LOCAL BDD
+        //OBTENIR DONNEES DE SQLLITE
         JoueurDAO joueurDAO = new JoueurDAO(getBaseContext());
         Joueur myJoueur = joueurDAO.getMyJoueur();
 
-        //LINK TO INTERFACE
+        //LIEN VERS L'INTERFACE
         nom = findViewById(R.id.Nom);
-        money = findViewById(R.id.Argent);
+        argent = findViewById(R.id.Argent);
         niveau = findViewById(R.id.Niveau);
 
         vie = findViewById(R.id.Vie);
         mana = findViewById(R.id.Mana);
-        atk = findViewById(R.id.Attaque);
+        attaque = findViewById(R.id.Attaque);
 
         vie.setText(myJoueur.getVie_max() + "/" + myJoueur.getVie() + " PV" );
-        atk.setText(myJoueur.getAttaque() + " ATK" );
+        attaque.setText(myJoueur.getAttaque() + " ATK" );
         mana.setText(myJoueur.getMana() + "/" + myJoueur.getMana_max() + " MANA" );
 
-        //CHANGMENT VALUE
+        //CHANGEMENT VALEUR
         nom.setText(myJoueur.getNom());
-        money.setText("Money : " + String.valueOf(myJoueur.getMoney()));
+        argent.setText("Argent : " + String.valueOf(myJoueur.getArgent()));
         niveau.setText("Niveau : " + String.valueOf(myJoueur.getNiveau()));
 
         //NAVIGATION
@@ -56,6 +56,7 @@ public class Menu extends AppCompatActivity {
         NavController navController = navHostFragment.getNavController();
         BottomNavigationView menu = (BottomNavigationView) findViewById(R.id.BottomNavigation);
         menu.setSelectedItemId(R.id.navigation_quest);
+
         menu.setOnItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(MenuItem item) {

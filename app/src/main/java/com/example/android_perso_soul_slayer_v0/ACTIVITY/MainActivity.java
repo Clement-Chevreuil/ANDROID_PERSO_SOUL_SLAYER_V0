@@ -13,12 +13,5 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.a_activity_main);
-
-        /*SharedPreferences prefs = getApplicationContext().getSharedPreferences("test1", MODE_PRIVATE);
-        SharedPreferences.Editor shared = prefs.edit();
-        shared.putString("test", "John Doe");
-        shared.apply();*/
-
-
     }
 }

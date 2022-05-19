@@ -21,115 +21,98 @@ import com.example.android_perso_soul_slayer_v0.R;
 import com.example.android_perso_soul_slayer_v0.VISUAL_ACTIVITY_3_FIGHT.CombatAdapterActions;
 
 public class Combat extends AppCompatActivity {
-    private Button atk, back;
-    private ProgressBar enemyvie, joueurvie, enemyMANA, joueurMANA;
-    private TextView informations, enemyNom, joueurNom, numberEnnemievie, numberJoueurvie, numberEnemyMANA, numberJoueurMANA;
-    private RatingBar enemyRating;
-    Joueur Joueur, enemy;
+    private Button retour;
+    private ProgressBar ennemieVie, joueurVie, ennemieMana, joueurMana;
+    private TextView ennemieNom, joueurNom, pointVieEnnemie, pointVieJoueur, pointManaEnnemie, pointManaJoueur;
+    private RatingBar etoiles;
+    Joueur joueur, ennemie;
+    
     JoueurDAO joueurDAO;
     MonEquipementDAO monEquipementDAO;
+    
     Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.a_activity_combat);
-
-
+        
         configureViewPager();
 
         context = this;
         joueurDAO = new JoueurDAO(getBaseContext());
         monEquipementDAO = new MonEquipementDAO(getBaseContext());
 
-        Joueur = joueurDAO.getMyJoueur();
-        Joueur.setMonEquipementList(monEquipementDAO.getAllEquipement(2));
+        joueur = joueurDAO.getMyJoueur();
+        joueur.setMonEquipementList(monEquipementDAO.getAllEquipement(2));
 
-        Joueur.adaptEquip();
+        joueur.adaptEquip();
 
         SharedPreferences prefs = getApplicationContext().getSharedPreferences("session", MODE_PRIVATE);
         int monsterInformation = prefs.getInt("monster", -1);
 
-        back  = findViewById(R.id.Retour);
-        back.setOnClickListener(surrender);
-        enemy = new Joueur();
-        enemy = enemy.createMonster2(monsterInformation);
+        retour = findViewById(R.id.Retour);
+        retour.setOnClickListener(abandon);
+        ennemie = new Joueur();
+        ennemie = ennemie.createMonster2(monsterInformation);
 
-        numberEnnemievie = findViewById(R.id.PointVieEnnemie);
-        numberJoueurvie = findViewById(R.id.PointVieJoueur);
-        numberEnemyMANA = findViewById(R.id.PointManaEnnemie);
-        numberJoueurMANA = findViewById(R.id.PointManaJoueur);
+        pointVieEnnemie = findViewById(R.id.PointVieEnnemie);
+        pointVieJoueur = findViewById(R.id.PointVieJoueur);
+        pointManaEnnemie = findViewById(R.id.PointManaEnnemie);
+        pointManaJoueur = findViewById(R.id.PointManaJoueur);
 
-        enemyvie = findViewById(R.id.ennemievie);
-        joueurvie = findViewById(R.id.JoueurVie);
-        enemyMANA = findViewById(R.id.EnnemieMana);
-        joueurMANA = findViewById(R.id.JoueurMana);
+        ennemieVie = findViewById(R.id.VieEnnemie);
+        joueurVie = findViewById(R.id.VieJoueur);
+        ennemieMana = findViewById(R.id.ManaEnnemie);
+        joueurMana = findViewById(R.id.ManaJoueur);
 
-        enemyNom = findViewById(R.id.ennemieNom);
-        joueurNom = findViewById(R.id.JoueurNom);
-        enemyRating = findViewById(R.id.Etoiles);
+        ennemieNom = findViewById(R.id.NomEnnemie);
+        joueurNom = findViewById(R.id.NomJoueur);
+        etoiles = findViewById(R.id.Etoiles);
 
-        enemyNom.setText(enemy.getNom());
-        joueurNom.setText(Joueur.getNom());
+        ennemieNom.setText(ennemie.getNom());
+        joueurNom.setText(joueur.getNom());
 
-        enemyRating.setRating(enemy.getStars());
-        enemyRating.setNumStars(5);
+        etoiles.setRating(ennemie.getStars());
+        etoiles.setNumStars(5);
 
-        numberEnnemievie.setText(enemy.getVie() + "/" + enemy.getVie_max());
-        enemyvie.setProgress(enemy.getVie()*100/enemy.getVie_max());
+        pointVieEnnemie.setText(ennemie.getVie() + "/" + ennemie.getVie_max());
+        ennemieVie.setProgress(ennemie.getVie()*100/ennemie.getVie_max());
 
-        numberEnemyMANA.setText(enemy.getMana() + "/" + enemy.getMana_max());
-        if(enemy.getMana_max() == 0)
+        pointManaEnnemie.setText(ennemie.getMana() + "/" + ennemie.getMana_max());
+        if(ennemie.getMana_max() == 0)
         {
-            enemyMANA.setProgress(0);
+            ennemieMana.setProgress(0);
         }
         else
         {
-            enemyMANA.setProgress(enemy.getMana()*100/enemy.getMana_max());
+            ennemieMana.setProgress(ennemie.getMana()*100/ennemie.getMana_max());
         }
 
 
-        numberJoueurvie.setText(Joueur.getVie() + "/" + Joueur.getVie_max());
-        joueurvie.setProgress(Joueur.getVie()*100/Joueur.getVie_max());
+        pointVieJoueur.setText(joueur.getVie() + "/" + joueur.getVie_max());
+        joueurVie.setProgress(joueur.getVie()*100/joueur.getVie_max());
 
-        numberJoueurMANA.setText(Joueur.getMana() + "/" + Joueur.getMana_max());
-        if(Joueur.getMana_max() == 0)
+        pointManaJoueur.setText(joueur.getMana() + "/" + joueur.getMana_max());
+        if(joueur.getMana_max() == 0)
         {
-            joueurMANA.setProgress(0);
+            joueurMana.setProgress(0);
         }
         else
         {
-            joueurMANA.setProgress(Joueur.getMana()*100/Joueur.getMana_max());
+            joueurMana.setProgress(joueur.getMana()*100/joueur.getMana_max());
         }
-
-
-
-
-
     }
 
     private void configureViewPager(){
-
         ViewPager pager = (ViewPager)findViewById(R.id.view_pager);
         pager.setAdapter(new CombatAdapterActions(getSupportFragmentManager(), getResources().getIntArray(R.array.pageFighting)) {});
-
     }
 
-
-    private View.OnClickListener surrender = new View.OnClickListener() {
+    private View.OnClickListener abandon = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            endurance();
+            finish();
         }
     };
-
-
-    public void endurance()
-    {
-        Intent unIntent = new Intent(context, Menu.class);
-        //unIntent.putExtra("idConcour", itemId);
-        startActivity(unIntent);
-        finish();
-    }
-
 }

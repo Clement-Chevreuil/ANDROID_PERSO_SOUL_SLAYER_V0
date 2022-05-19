@@ -21,55 +21,55 @@ public class JoueurDAO extends A_DAOBase {
     private static final String vie_max = "vie_max";
     private static final String attaque = "attaque";
     private static final String experience = "experience";
-    private static final String money = "money";
+    private static final String argent = "argent";
     private static final String mana = "mana";
     private static final String mana_max = "mana_max";
     private static final String endurance = "endurance";
     private static final String defense = "defense";
     private static final String precision = "precision";
     private static final String vitesse = "vitesse";
-    private static final String password = "vitesse";
+    private static final String password = "password";
 
 
     public JoueurDAO(Context pContext) {
         super(pContext);
     }
 
-    public void add(Joueur c) {
+    public void add(Joueur j) {
 
         ContentValues values = new ContentValues();
 
-        values.put(nom, c.getNom());
-        values.put(vie_max, c.getVie_max());
-        values.put(vie, c.getVie());
-        values.put(attaque, c.getAttaque());
-        values.put(mana, c.getMana());
-        values.put(mana_max, c.getMana_max());
-        values.put(endurance, c.getEndurance());
-        values.put(defense, c.getdefense());
-        values.put(precision, c.getPrecision());
-        values.put(vitesse, c.getVitesse());
-        values.put(password, c.getPassword());
+        values.put(nom, j.getNom());
+        values.put(vie_max, j.getVie_max());
+        values.put(vie, j.getVie());
+        values.put(attaque, j.getAttaque());
+        values.put(mana, j.getMana());
+        values.put(mana_max, j.getMana_max());
+        values.put(endurance, j.getEndurance());
+        values.put(defense, j.getDefense());
+        values.put(precision, j.getPrecision());
+        values.put(vitesse, j.getVitesse());
+        values.put(password, j.getPassword());
 
         mDb.insert(nomTableJoueur, null, values);
     }
     public void delete(long id) {
         mDb.delete(nomTableJoueur, idJoueur + " = ?", new String[] {String.valueOf(id)});
     }
-    public void update(Joueur c) {
+    public void update(Joueur j) {
         this.open();
         ContentValues value = new ContentValues();
-        value.put(vie, c.getVie());
-        value.put(vie_max, c.getVie_max());
-        value.put(mana, c.getMana());
-        value.put(mana_max, c.getMana_max());
-        value.put(experience, c.getEndurance());
-        value.put(money, c.getMoney());
-        value.put(endurance, c.getEndurance());
-        value.put(defense, c.getdefense());
-        value.put(precision, c.getPrecision());
-        value.put(vitesse, c.getVitesse());
-        mDb.update(nomTableJoueur, value, idJoueur  + " = ?", new String[] {String.valueOf(c.getId())});
+        value.put(vie, j.getVie());
+        value.put(vie_max, j.getVie_max());
+        value.put(mana, j.getMana());
+        value.put(mana_max, j.getMana_max());
+        value.put(experience, j.getEndurance());
+        value.put(argent, j.getArgent());
+        value.put(endurance, j.getEndurance());
+        value.put(defense, j.getDefense());
+        value.put(precision, j.getPrecision());
+        value.put(vitesse, j.getVitesse());
+        mDb.update(nomTableJoueur, value, idJoueur  + " = ?", new String[] {String.valueOf(j.getId())});
         this.close();
     }
 
@@ -82,23 +82,23 @@ public class JoueurDAO extends A_DAOBase {
 
             if (unCurseur.moveToFirst()) {
                 do {
-                    Joueur Joueur = new Joueur();
+                    Joueur j = new Joueur();
 
-                    Joueur.setIdJoueur(unCurseur.getInt(unCurseur.getColumnIndex(idJoueur)));
-                    Joueur.setVie_max(unCurseur.getInt(unCurseur.getColumnIndex(vie_max)));
-                    Joueur.setVie(unCurseur.getInt(unCurseur.getColumnIndex(vie)));
-                    Joueur.setAttaque(unCurseur.getInt(unCurseur.getColumnIndex(attaque)));
-                    Joueur.setNom(unCurseur.getString(unCurseur.getColumnIndex(nom)));
-                    Joueur.setexperience(unCurseur.getInt(unCurseur.getColumnIndex(experience)));
-                    Joueur.setMoney(unCurseur.getInt(unCurseur.getColumnIndex(money)));
-                    Joueur.setMana(unCurseur.getInt(unCurseur.getColumnIndex(mana)));
-                    Joueur.setMana_max(unCurseur.getInt(unCurseur.getColumnIndex(mana_max)));
-                    Joueur.setDefense(unCurseur.getInt(unCurseur.getColumnIndex(defense)));
-                    Joueur.setVitesse(unCurseur.getInt(unCurseur.getColumnIndex(vitesse)));
-                    Joueur.setEndurance(unCurseur.getInt(unCurseur.getColumnIndex(endurance)));
-                    Joueur.setPrecision(unCurseur.getInt(unCurseur.getColumnIndex(precision)));
-                    Joueur.setPassword(unCurseur.getString(unCurseur.getColumnIndex(password)));
-                    joueurList.add(Joueur);
+                    j.setId(unCurseur.getInt(unCurseur.getColumnIndex(idJoueur)));
+                    j.setVie_max(unCurseur.getInt(unCurseur.getColumnIndex(vie_max)));
+                    j.setVie(unCurseur.getInt(unCurseur.getColumnIndex(vie)));
+                    j.setAttaque(unCurseur.getInt(unCurseur.getColumnIndex(attaque)));
+                    j.setNom(unCurseur.getString(unCurseur.getColumnIndex(nom)));
+                    j.setexperience(unCurseur.getInt(unCurseur.getColumnIndex(experience)));
+                    j.setArgent(unCurseur.getInt(unCurseur.getColumnIndex(argent)));
+                    j.setMana(unCurseur.getInt(unCurseur.getColumnIndex(mana)));
+                    j.setMana_max(unCurseur.getInt(unCurseur.getColumnIndex(mana_max)));
+                    j.setDefense(unCurseur.getInt(unCurseur.getColumnIndex(defense)));
+                    j.setVitesse(unCurseur.getInt(unCurseur.getColumnIndex(vitesse)));
+                    j.setEndurance(unCurseur.getInt(unCurseur.getColumnIndex(endurance)));
+                    j.setPrecision(unCurseur.getInt(unCurseur.getColumnIndex(precision)));
+                    j.setPassword(unCurseur.getString(unCurseur.getColumnIndex(password)));
+                    joueurList.add(j);
                 }
                 while (unCurseur.moveToNext());
                 Collections.shuffle(joueurList);
@@ -110,45 +110,45 @@ public class JoueurDAO extends A_DAOBase {
     @SuppressLint("Range")
     public Joueur selectById(int id) {
         this.open();
-        Joueur Joueur = new Joueur();
+        Joueur j = new Joueur();
         Cursor unCurseur = mDb.rawQuery("SELECT * FROM Joueur WHERE id_joueur =  "+id+" ;", null);
 
         if(unCurseur.getCount() == 0)
         {
-            Joueur.setIdJoueur(0);
-            Joueur.setAttaque(0);
-            Joueur.setVie(0);
-            Joueur.setVie_max(0);
-            Joueur.setNom("unknow");
-            Joueur.setMana(10);
-            Joueur.setMana_max(10);
-            Joueur.setDefense(10);
-            Joueur.setVitesse(10);
-            Joueur.setEndurance(10);
-            Joueur.setPrecision(10);
-            Joueur.setPassword("azerty");
+            j.setId(0);
+            j.setAttaque(0);
+            j.setVie(0);
+            j.setVie_max(0);
+            j.setNom("unknow");
+            j.setMana(10);
+            j.setMana_max(10);
+            j.setDefense(10);
+            j.setVitesse(10);
+            j.setEndurance(10);
+            j.setPrecision(10);
+            j.setPassword("azerty");
         }
 
         if (unCurseur.moveToFirst()) {
 
-            Joueur = new Joueur();
-            Joueur.setIdJoueur(unCurseur.getInt(unCurseur.getColumnIndex(idJoueur)));
-            Joueur.setVie_max(unCurseur.getInt(unCurseur.getColumnIndex(vie_max)));
-            Joueur.setVie(unCurseur.getInt(unCurseur.getColumnIndex(vie)));
-            Joueur.setAttaque(unCurseur.getInt(unCurseur.getColumnIndex(attaque)));
-            Joueur.setNom(unCurseur.getString(unCurseur.getColumnIndex(nom)));
-            Joueur.setexperience(unCurseur.getInt(unCurseur.getColumnIndex(experience)));
-            Joueur.setMoney(unCurseur.getInt(unCurseur.getColumnIndex(money)));
-            Joueur.setMana(unCurseur.getInt(unCurseur.getColumnIndex(mana)));
-            Joueur.setMana_max(unCurseur.getInt(unCurseur.getColumnIndex(mana_max)));
-            Joueur.setDefense(unCurseur.getInt(unCurseur.getColumnIndex(defense)));
-            Joueur.setVitesse(unCurseur.getInt(unCurseur.getColumnIndex(vitesse)));
-            Joueur.setEndurance(unCurseur.getInt(unCurseur.getColumnIndex(endurance)));
-            Joueur.setPrecision(unCurseur.getInt(unCurseur.getColumnIndex(precision)));
-            Joueur.setPassword(unCurseur.getString(unCurseur.getColumnIndex(password)));
+            j = new Joueur();
+            j.setId(unCurseur.getInt(unCurseur.getColumnIndex(idJoueur)));
+            j.setVie_max(unCurseur.getInt(unCurseur.getColumnIndex(vie_max)));
+            j.setVie(unCurseur.getInt(unCurseur.getColumnIndex(vie)));
+            j.setAttaque(unCurseur.getInt(unCurseur.getColumnIndex(attaque)));
+            j.setNom(unCurseur.getString(unCurseur.getColumnIndex(nom)));
+            j.setexperience(unCurseur.getInt(unCurseur.getColumnIndex(experience)));
+            j.setArgent(unCurseur.getInt(unCurseur.getColumnIndex(argent)));
+            j.setMana(unCurseur.getInt(unCurseur.getColumnIndex(mana)));
+            j.setMana_max(unCurseur.getInt(unCurseur.getColumnIndex(mana_max)));
+            j.setDefense(unCurseur.getInt(unCurseur.getColumnIndex(defense)));
+            j.setVitesse(unCurseur.getInt(unCurseur.getColumnIndex(vitesse)));
+            j.setEndurance(unCurseur.getInt(unCurseur.getColumnIndex(endurance)));
+            j.setPrecision(unCurseur.getInt(unCurseur.getColumnIndex(precision)));
+            j.setPassword(unCurseur.getString(unCurseur.getColumnIndex(password)));
         }
         this.close();
-        return Joueur;
+        return j;
     }
 
     @SuppressLint("Range")
@@ -177,10 +177,10 @@ public class JoueurDAO extends A_DAOBase {
             values.put(vie, Joueur.getVie());
             values.put(attaque, Joueur.getAttaque());
             values.put(experience, Joueur.getEndurance());
-            values.put(money, Joueur.getMoney());
+            values.put(argent, Joueur.getArgent());
             values.put(mana, Joueur.getMana());
             values.put(mana_max, Joueur.getMana_max());
-            values.put(defense, Joueur.getdefense());
+            values.put(defense, Joueur.getDefense());
             values.put(endurance, Joueur.getEndurance());
             values.put(vitesse, Joueur.getVitesse());
             values.put(precision, Joueur.getPrecision());
@@ -193,13 +193,13 @@ public class JoueurDAO extends A_DAOBase {
         else if (unCurseur.moveToFirst()) {
 
             Joueur = new Joueur();
-            Joueur.setIdJoueur(unCurseur.getInt(unCurseur.getColumnIndex(idJoueur)));
+            Joueur.setId(unCurseur.getInt(unCurseur.getColumnIndex(idJoueur)));
             Joueur.setVie_max(unCurseur.getInt(unCurseur.getColumnIndex(vie_max)));
             Joueur.setVie(unCurseur.getInt(unCurseur.getColumnIndex(vie)));
             Joueur.setAttaque(unCurseur.getInt(unCurseur.getColumnIndex(attaque)));
             Joueur.setNom(unCurseur.getString(unCurseur.getColumnIndex(nom)));
             Joueur.setexperience(unCurseur.getInt(unCurseur.getColumnIndex(experience)));
-            Joueur.setMoney(unCurseur.getInt(unCurseur.getColumnIndex(money)));
+            Joueur.setArgent(unCurseur.getInt(unCurseur.getColumnIndex(argent)));
             Joueur.setMana(unCurseur.getInt(unCurseur.getColumnIndex(mana)));
             Joueur.setMana_max(unCurseur.getInt(unCurseur.getColumnIndex(mana_max)));
             Joueur.setDefense(unCurseur.getInt(unCurseur.getColumnIndex(defense)));

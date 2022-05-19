@@ -3,6 +3,21 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Tos/AndroidStudioProjects/ANDROID_PERSO_SOUL_SLAYER_V0/app/src/main/res/layout/a_activity_combat.xml" value="0.22" />
+        <entry key="..\:/Users/Tos/AndroidStudioProjects/ANDROID_PERSO_SOUL_SLAYER_V0/app/src/main/res/layout/b_fragment_chargement.xml" value="0.33" />
+        <entry key="..\:/Users/Tos/AndroidStudioProjects/ANDROID_PERSO_SOUL_SLAYER_V0/app/src/main/res/layout/b_fragment_connection_1.xml" value="0.18802083333333333" />
+        <entry key="..\:/Users/Tos/AndroidStudioProjects/ANDROID_PERSO_SOUL_SLAYER_V0/app/src/main/res/layout/b_fragment_connection_2.xml" value="0.18802083333333333" />
+        <entry key="..\:/Users/Tos/AndroidStudioProjects/ANDROID_PERSO_SOUL_SLAYER_V0/app/src/main/res/layout/b_fragment_inscription.xml" value="0.18802083333333333" />
+        <entry key="..\:/Users/Tos/AndroidStudioProjects/ANDROID_PERSO_SOUL_SLAYER_V0/app/src/main/res/layout/b_fragment_oublie.xml" value="0.18802083333333333" />
+        <entry key="..\:/Users/Tos/AndroidStudioProjects/ANDROID_PERSO_SOUL_SLAYER_V0/app/src/main/res/layout/c_fragment_combat.xml" value="0.18802083333333333" />
+        <entry key="..\:/Users/Tos/AndroidStudioProjects/ANDROID_PERSO_SOUL_SLAYER_V0/app/src/main/res/layout/c_fragment_joueur_choix_equipement.xml" value="0.18802083333333333" />
+        <entry key="..\:/Users/Tos/AndroidStudioProjects/ANDROID_PERSO_SOUL_SLAYER_V0/app/src/main/res/layout/c_fragment_joueur_equipement.xml" value="0.18802083333333333" />
+        <entry key="..\:/Users/Tos/AndroidStudioProjects/ANDROID_PERSO_SOUL_SLAYER_V0/app/src/main/res/layout/c_fragment_joueur_equipements.xml" value="0.18802083333333333" />
+        <entry key="..\:/Users/Tos/AndroidStudioProjects/ANDROID_PERSO_SOUL_SLAYER_V0/app/src/main/res/layout/c_fragment_magasin.xml" value="0.18802083333333333" />
+        <entry key="..\:/Users/Tos/AndroidStudioProjects/ANDROID_PERSO_SOUL_SLAYER_V0/app/src/main/res/layout/c_fragment_magasin_objet.xml" value="0.18802083333333333" />
+        <entry key="..\:/Users/Tos/AndroidStudioProjects/ANDROID_PERSO_SOUL_SLAYER_V0/app/src/main/res/layout/c_fragment_magasin_objets.xml" value="0.358695652173913" />
+        <entry key="..\:/Users/Tos/AndroidStudioProjects/ANDROID_PERSO_SOUL_SLAYER_V0/app/src/main/res/layout/c_fragment_quete.xml" value="0.18802083333333333" />
+        <entry key="..\:/Users/Tos/AndroidStudioProjects/ANDROID_PERSO_SOUL_SLAYER_V0/app/src/main/res/layout/c_fragment_quetes.xml" value="0.18802083333333333" />
         <entry key="..\:/Users/tosni/AndroidStudioProjects/ANDROID_ALL/ANDROID_PERSO_SOUL_SLAYER_V0/app/src/main/res/layout/c_fragment_joueur_equipement.xml" value="0.17980072463768115" />
       </map>
     </option>

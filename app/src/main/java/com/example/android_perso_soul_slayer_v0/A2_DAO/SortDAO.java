@@ -13,16 +13,16 @@ import java.util.List;
 
 public class SortDAO extends A_DAOBase {
 
-    private static final String nomTableSpell = "Sort";
-    private static final String idSpell = "id_spell";
-    private static final String nomSpell= "nom_spell";
-    private static final String descriptionSpell = "description_spell";
-    private static final String attributSpell = "attribut_spell";
-    private static final String gainSpell = "gain_spell";
-    private static final String typeSpell = "type_spell";
-    private static final String costSpell = "cost_spell";
-    private static final String quantitySpell = "quantity_spell";
-    private static final String manaSpell = "mana_spell";
+    private static final String nomTableSort = "Sort";
+    private static final String idSort = "id_sort";
+    private static final String nomSort= "nom_sort";
+    private static final String descriptionSort = "description_sort";
+    private static final String attributSort = "attribut_sort";
+    private static final String gainSort = "gain_sort";
+    private static final String typeSort = "type_sort";
+    private static final String prixSort = "prix_sort";
+    private static final String quantiteSort = "quantite_sort";
+    private static final String manaSort = "mana_sort";
 
     public SortDAO(Context pContext) {
         super(pContext);
@@ -32,62 +32,62 @@ public class SortDAO extends A_DAOBase {
 
         ContentValues values = new ContentValues();
 
-        values.put(nomSpell, sort.getNom());
-        values.put(descriptionSpell, sort.getDescription());
-        values.put(gainSpell, sort.getGain());
-        values.put(attributSpell, sort.getAttribut());
-        values.put(typeSpell, sort.getType());
-        values.put(manaSpell, sort.getMana());
-        mDb.insert(nomTableSpell, null, values);
+        values.put(nomSort, sort.getNom());
+        values.put(descriptionSort, sort.getDescription());
+        values.put(gainSort, sort.getGain());
+        values.put(attributSort, sort.getAttribut());
+        values.put(typeSort, sort.getType());
+        values.put(manaSort, sort.getMana());
+        mDb.insert(nomTableSort, null, values);
     }
     public void delete(long id) {
         open();
-        mDb.delete(nomTableSpell, idSpell + " = ?", new String[] {String.valueOf(id)});
+        mDb.delete(nomTableSort, idSort + " = ?", new String[] {String.valueOf(id)});
         close();
     }
     public void update(Sort sort) {
         open();
         ContentValues value = new ContentValues();
-        value.put(nomSpell, sort.getNom());
-        value.put(descriptionSpell, sort.getDescription());
-        value.put(gainSpell, sort.getGain());
-        value.put(attributSpell, sort.getAttribut());
-        value.put(typeSpell, sort.getType());
-        value.put(costSpell, sort.getCost());
-        value.put(quantitySpell, sort.getQuantity());
-        value.put(nomSpell, sort.getMana());
-        mDb.update(nomTableSpell, value, idSpell  + " = ?", new String[] {String.valueOf(sort.getId())});
+        value.put(nomSort, sort.getNom());
+        value.put(descriptionSort, sort.getDescription());
+        value.put(gainSort, sort.getGain());
+        value.put(attributSort, sort.getAttribut());
+        value.put(typeSort, sort.getType());
+        value.put(prixSort, sort.getPrix());
+        value.put(quantiteSort, sort.getQuantite());
+        value.put(nomSort, sort.getMana());
+        mDb.update(nomTableSort, value, idSort  + " = ?", new String[] {String.valueOf(sort.getId())});
         close();
     }
-    public void updateQuantity(Sort sort) {
+    public void updateQuantite(Sort sort) {
         open();
         ContentValues value = new ContentValues();
-        value.put(quantitySpell, sort.getQuantity());
-        mDb.update(nomTableSpell, value, idSpell  + " = ?", new String[] {String.valueOf(sort.getId())});
+        value.put(quantiteSort, sort.getQuantite());
+        mDb.update(nomTableSort, value, idSort  + " = ?", new String[] {String.valueOf(sort.getId())});
         close();
     }
     @SuppressLint("Range")
-    public List<Sort> allSpell(int i) {
+    public List<Sort> allSort(int i) {
 
         List<Sort> allSort = new ArrayList<Sort>();
         this.open();
         Cursor unCurseur;
-        if(i == 1) { unCurseur = mDb.rawQuery("SELECT * FROM Spell;", null); }
-        else { unCurseur = mDb.rawQuery("SELECT * FROM Speel e WHERE e.quantity_equipment != 0 AND e.id_spell NOT IN (SELECT m.id_spell FROM MySpell m, Spell f WHERE m.id_spell = f.id_spell AND f.quantity_spell != -1) ;", null); }
+        if(i == 1) { unCurseur = mDb.rawQuery("SELECT * FROM Sort;", null); }
+        else { unCurseur = mDb.rawQuery("SELECT * FROM Speel e WHERE e.quantite_equipement != 0 AND e.id_sort NOT IN (SELECT m.id_sort FROM MySort m, Sort f WHERE m.id_sort = f.id_sort AND f.quantite_sort != -1) ;", null); }
 
-        if(unCurseur.getCount() == 0) { allSort = createSpell(); }
+        if(unCurseur.getCount() == 0) { allSort = createSort(); }
         else if (unCurseur.moveToFirst()) {
             do {
                 Sort sort = new Sort();
-                sort.setId(unCurseur.getInt(unCurseur.getColumnIndex(idSpell)));
-                sort.setNom(unCurseur.getString(unCurseur.getColumnIndex(nomSpell)));
-                sort.setAttribut(unCurseur.getString(unCurseur.getColumnIndex(attributSpell)));
-                sort.setDescription(unCurseur.getString(unCurseur.getColumnIndex(descriptionSpell)));
-                sort.setGain(unCurseur.getInt(unCurseur.getColumnIndex(gainSpell)));
-                sort.setType(unCurseur.getInt(unCurseur.getColumnIndex(typeSpell)));
-                sort.setCost(unCurseur.getInt(unCurseur.getColumnIndex(costSpell)));
-                sort.setQuantity(unCurseur.getInt(unCurseur.getColumnIndex(quantitySpell)));
-                sort.setMana(unCurseur.getInt(unCurseur.getColumnIndex(manaSpell)));
+                sort.setId(unCurseur.getInt(unCurseur.getColumnIndex(idSort)));
+                sort.setNom(unCurseur.getString(unCurseur.getColumnIndex(nomSort)));
+                sort.setAttribut(unCurseur.getString(unCurseur.getColumnIndex(attributSort)));
+                sort.setDescription(unCurseur.getString(unCurseur.getColumnIndex(descriptionSort)));
+                sort.setGain(unCurseur.getInt(unCurseur.getColumnIndex(gainSort)));
+                sort.setType(unCurseur.getInt(unCurseur.getColumnIndex(typeSort)));
+                sort.setPrix(unCurseur.getInt(unCurseur.getColumnIndex(prixSort)));
+                sort.setQuantite(unCurseur.getInt(unCurseur.getColumnIndex(quantiteSort)));
+                sort.setMana(unCurseur.getInt(unCurseur.getColumnIndex(manaSort)));
                 allSort.add(sort);
             }
             while (unCurseur.moveToNext());
@@ -97,7 +97,7 @@ public class SortDAO extends A_DAOBase {
         return allSort;
 
     }
-    public List<Sort> createSpell()
+    public List<Sort> createSort()
     {
         List<Sort> speelList = new ArrayList<>();
 
@@ -116,15 +116,15 @@ public class SortDAO extends A_DAOBase {
         for (Sort sort : speelList)
         {
             ContentValues values = new ContentValues();
-            values.put(nomSpell, sort.getNom());
-            values.put(descriptionSpell, sort.getDescription());
-            values.put(gainSpell, sort.getGain());
-            values.put(attributSpell, sort.getAttribut());
-            values.put(typeSpell, sort.getType());
-            values.put(costSpell, sort.getCost());
-            values.put(quantitySpell, sort.getQuantity());
-            values.put(manaSpell, sort.getMana());
-            mDb.insert(nomTableSpell, null, values);
+            values.put(nomSort, sort.getNom());
+            values.put(descriptionSort, sort.getDescription());
+            values.put(gainSort, sort.getGain());
+            values.put(attributSort, sort.getAttribut());
+            values.put(typeSort, sort.getType());
+            values.put(prixSort, sort.getPrix());
+            values.put(quantiteSort, sort.getQuantite());
+            values.put(manaSort, sort.getMana());
+            mDb.insert(nomTableSort, null, values);
         }
 
         return speelList;

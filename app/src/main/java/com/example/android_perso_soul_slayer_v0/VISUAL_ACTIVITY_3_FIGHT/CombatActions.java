@@ -29,8 +29,8 @@ public class CombatActions {
 
     Context context;
     Activity activity;
-    TextView informations, enemyNom, joueurNom, numberEnemyvie,numberJoueurvie, numberEnemyMANA, numberJoueurMANA;
-    ProgressBar enemyvie, joueurvie, enemyMANA, joueurMANA;
+    TextView informations, ennemieNom, joueurNom, numberEnemyvie,pointVieJoueur, pointManaEnnemie, pointManaJoueur;
+    ProgressBar ennemieVie, joueurVie, ennemieMana, joueurMana;
     JoueurDAO joueurDAO;
     Joueur Joueur, enemy;
     MonEquipementDAO monEquipementDAO;
@@ -59,16 +59,16 @@ public class CombatActions {
         this.context = context;
 
         informations = activity.findViewById(R.id.Informations);
-        joueurvie = activity.findViewById(R.id.JoueurVie);
-        numberJoueurvie = activity.findViewById(R.id.PointVieJoueur);
+        joueurVie = activity.findViewById(R.id.VieJoueur);
+        pointVieJoueur = activity.findViewById(R.id.PointVieJoueur);
         numberEnemyvie = activity.findViewById(R.id.PointVieEnnemie);
-        numberEnemyMANA =  activity.findViewById(R.id.PointManaEnnemie);
-        numberJoueurMANA =  activity.findViewById(R.id.PointManaJoueur);
-        enemyvie =  activity.findViewById(R.id.ennemievie);
-        enemyMANA = activity.findViewById(R.id.EnnemieMana);
-        joueurMANA = activity.findViewById(R.id.JoueurMana);
-        enemyNom =  activity.findViewById(R.id.ennemieNom);
-        joueurNom =  activity.findViewById(R.id.JoueurNom);
+        pointManaEnnemie =  activity.findViewById(R.id.PointManaEnnemie);
+        pointManaJoueur =  activity.findViewById(R.id.PointManaJoueur);
+        ennemieVie =  activity.findViewById(R.id.VieEnnemie);
+        ennemieMana = activity.findViewById(R.id.ManaEnnemie);
+        joueurMana = activity.findViewById(R.id.ManaJoueur);
+        ennemieNom =  activity.findViewById(R.id.NomEnnemie);
+        joueurNom =  activity.findViewById(R.id.NomJoueur);
         viewPager = activity.findViewById(R.id.view_pager);
         punch = activity.findViewById(R.id.Frappe);
 
@@ -101,7 +101,7 @@ public class CombatActions {
 
     public void spell(MonSort monSort)
     {
-        Sort sort = monSort.getSpell();
+        Sort sort = monSort.getSort();
         //ATTAQUE
         if(sort.getType() == 1)
         {
@@ -110,11 +110,11 @@ public class CombatActions {
             if(coutMana <= Joueur.getMana())
             {
                 Joueur.setMana(Joueur.getMana() - coutMana);
-                joueurMANA.setProgress(Joueur.getMana() * 100 / Joueur.getMana_max());
-                numberJoueurMANA.setText(Joueur.getMana() + " / " + Joueur.getMana_max());
+                joueurMana.setProgress(Joueur.getMana() * 100 / Joueur.getMana_max());
+                pointManaJoueur.setText(Joueur.getMana() + " / " + Joueur.getMana_max());
 
                 enemy.setVie(enemy.getVie() - sort.getGain());
-                enemyMANA.setProgress(enemy.getVie() * 100 / enemy.getVie_max());
+                ennemieMana.setProgress(enemy.getVie() * 100 / enemy.getVie_max());
 
                 int timer = showTextAfter("Vous avez attaqué ");
 
@@ -124,7 +124,7 @@ public class CombatActions {
                 }
                 else
                 {
-                    enemyvie.setProgress(enemy.getVie() * 100 / enemy.getVie_max());
+                    ennemieVie.setProgress(enemy.getVie() * 100 / enemy.getVie_max());
                     numberEnemyvie.setText(enemy.getVie() + "/" + enemy.getVie_max());
                     attaqueEnemy(timer);
                 }
@@ -162,13 +162,13 @@ public class CombatActions {
             if(Joueur.getVie_max() < Joueur.getVie() + 10)
             {
                 Joueur.setVie(Joueur.getVie_max());
-                joueurvie.setProgress(100);
-                numberJoueurvie.setText(Joueur.getVie() + "/" + Joueur.getVie_max());
+                joueurVie.setProgress(100);
+                pointVieJoueur.setText(Joueur.getVie() + "/" + Joueur.getVie_max());
             }
             else{
                 Joueur.setVie(Joueur.getVie() + 10);
-                joueurvie.setProgress(Joueur.getVie() * 100 / Joueur.getVie_max());
-                numberJoueurvie.setText(Joueur.getVie() + "/" + Joueur.getVie_max());
+                joueurVie.setProgress(Joueur.getVie() * 100 / Joueur.getVie_max());
+                pointVieJoueur.setText(Joueur.getVie() + "/" + Joueur.getVie_max());
             }
 
             equipementDAO.delete(objet.getEquipement().getId());
@@ -195,7 +195,7 @@ public class CombatActions {
         }
         else
         {
-            enemyvie.setProgress(enemy.getVie() * 100 / enemy.getVie_max());
+            ennemieVie.setProgress(enemy.getVie() * 100 / enemy.getVie_max());
             numberEnemyvie.setText(enemy.getVie() + "/" + enemy.getVie_max());
             attaqueEnemy(timer);
 
@@ -301,8 +301,8 @@ public class CombatActions {
 
                 else
                 {
-                    joueurvie.setProgress(Joueur.getVie() * 100 / Joueur.getVie_max());
-                    numberJoueurvie.setText(Joueur.getVie() + "/" + Joueur.getVie_max());
+                    joueurVie.setProgress(Joueur.getVie() * 100 / Joueur.getVie_max());
+                    pointVieJoueur.setText(Joueur.getVie() + "/" + Joueur.getVie_max());
 
                     Handler handler2 = new Handler();
                     handler2.postDelayed(new Runnable() {
@@ -336,7 +336,7 @@ public class CombatActions {
 
     public void winGame()
     {
-        enemyvie.setProgress(0);
+        ennemieVie.setProgress(0);
         numberEnemyvie.setText("0/" + enemy.getVie_max());
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
@@ -346,11 +346,11 @@ public class CombatActions {
                 int oldNiveau = Joueur.getNiveau();
                 int oldexperienceJoueur = Joueur.getEndurance();
                 Joueur.setexperience(oldexperienceJoueur + enemy.getEndurance());
-                Joueur.setMoney(Joueur.getMoney() + quete.getMoney());
+                Joueur.setArgent(Joueur.getArgent() + quete.getArgent());
                 joueurDAO.update(Joueur);
-                if(quete.getClear() > 0)
+                if(quete.getNombre() > 0)
                 {
-                    quete.setClear(quete.getClear() - 1);
+                    quete.setNombre(quete.getNombre() - 1);
                     queteDAO.update(quete);
                 }
 
@@ -377,8 +377,8 @@ public class CombatActions {
 
     public void loseGame()
     {
-        joueurvie.setProgress(0);
-        numberJoueurvie.setText("0/" + Joueur.getVie_max());
+        joueurVie.setProgress(0);
+        pointVieJoueur.setText("0/" + Joueur.getVie_max());
 
         Handler handler2 = new Handler();
         handler2.postDelayed(new Runnable() {

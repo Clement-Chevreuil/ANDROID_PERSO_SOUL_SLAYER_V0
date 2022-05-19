@@ -8,37 +8,39 @@ public class Equipement {
     public String description;
     public int gain;
     public int type;
-    public int cost;
+    public int prix;
     public int quantite;
 
 
-    public Equipement(int id, String nom, String attribut, int gain, int type, int cost, String description, int quantite) {
+    public Equipement(int id, String nom, String attribut, int gain, int type, int prix, String description, int quantite) {
         this.id = id;
         this.nom = nom;
         this.attribut = attribut;
         this.description = description;
         this.gain = gain;
         this.type = type;
-        this.cost = cost;
+        this.prix = prix;
         this.quantite = quantite;
     }
 
-    public Equipement(String nom, String attribut, int gain, int type, int cost, String description) {
+    public Equipement(String nom, String attribut, int gain, int type, int prix, String description) {
         this.nom = nom;
         this.attribut = attribut;
         this.description = description;
         this.gain = gain;
         this.type = type;
-        this.cost = cost;
+        this.prix = prix;
     }
 
+    //CONSTRUCTEUR
     public Equipement(String nom) { this.nom = nom; }
     public Equipement(int id) {
         this.id = id;
     }
     public Equipement() {}
 
-    public int getCost() { return cost; }
+    //GETTER
+    public int getPrix() { return prix; }
     public int getId() {
         return id;
     }
@@ -57,7 +59,8 @@ public class Equipement {
     }
     public int getQuantite() { return quantite; }
 
-    public void setCost(int cost) { this.cost = cost; }
+    //SETTER
+    public void setPrix(int prix) { this.prix = prix; }
     public void setId(int id) {
         this.id = id;
     }

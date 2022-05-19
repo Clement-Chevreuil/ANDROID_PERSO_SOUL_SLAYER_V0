@@ -17,17 +17,17 @@ public class MonEquipementDAO extends A_DAOBase{
 
 
     private static final String nomTableMyEquipement = "MonEquipement";
-    private static final String idMyEquipement = "id_my_equipment";
+    private static final String idMyEquipement = "id_my_equipement";
     private static final String idJoueur = "id_joueur";
-    private static final String idEquipement = "id_equipment";
+    private static final String idEquipement = "id_equipement";
     private static final String equip = "equip";
 
-    private static final String nomEquipement = "nom_equipment";
-    private static final String descriptionEquipement = "description_equipment";
-    private static final String attributEquipement = "attribut_equipment";
-    private static final String gainEquipement = "gain_equipment";
-    private static final String typeEquipement = "type_equipment";
-    private static final String costEquipement= "cost_equipment";
+    private static final String nomEquipement = "nom_equipement";
+    private static final String descriptionEquipement = "description_equipement";
+    private static final String attributEquipement = "attribut_equipement";
+    private static final String gainEquipement = "gain_equipement";
+    private static final String typeEquipement = "type_equipement";
+    private static final String prixEquipement= "prix_equipement";
 
     public MonEquipementDAO(Context pContext) {
         super(pContext);
@@ -78,7 +78,7 @@ public class MonEquipementDAO extends A_DAOBase{
     public ArrayList<MonEquipement> getAll() {
         this.open();
         ArrayList<MonEquipement> getAllMonEquipement = new ArrayList<>();
-        Cursor unCurseur = mDb.rawQuery("SELECT e.id_equipment, e.nom_equipment, e.description_equipment,e.attribut_equipment, e.gain_equipment,e.type_equipment, e.cost_equipment, m.equip  FROM MyEquipement m, Equipement e WHERE m.id_joueur = 1 AND m.id_equipment = e.id_equipment;", null);
+        Cursor unCurseur = mDb.rawQuery("SELECT e.id_equipement, e.nom_equipement, e.description_equipement,e.attribut_equipement, e.gain_equipement,e.type_equipement, e.prix_equipement, m.equip  FROM MyEquipement m, Equipement e WHERE m.id_joueur = 1 AND m.id_equipement = e.id_equipement;", null);
 
 
         if (unCurseur.getCount() == 0)
@@ -98,7 +98,7 @@ public class MonEquipementDAO extends A_DAOBase{
                 equipement.setDescription(unCurseur.getString(unCurseur.getColumnIndex(descriptionEquipement)));
                 equipement.setGain(unCurseur.getInt(unCurseur.getColumnIndex(gainEquipement)));
                 equipement.setType(unCurseur.getInt(unCurseur.getColumnIndex(typeEquipement)));
-                equipement.setCost(unCurseur.getInt(unCurseur.getColumnIndex(costEquipement)));
+                equipement.setPrix(unCurseur.getInt(unCurseur.getColumnIndex(prixEquipement)));
 
                 monEquipement.setId(unCurseur.getInt(unCurseur.getColumnIndex(idMyEquipement)));
                 monEquipement.setEquip(unCurseur.getInt(unCurseur.getColumnIndex(equip)));
@@ -120,25 +120,25 @@ public class MonEquipementDAO extends A_DAOBase{
         ArrayList<MonEquipement> getAllMonEquipement = new ArrayList<>();
 
         //defenseault au cas ou
-        Cursor unCurseur = mDb.rawQuery("SELECT m.id_my_equipment, e.id_equipment, e.nom_equipment, e.description_equipment,e.attribut_equipment, e.gain_equipment,e.type_equipment, e.cost_equipment, m.equip  FROM MyEquipement m, Equipement e WHERE m.id_joueur = 1 AND m.id_equipment = e.id_equipment AND e.type_equipment = 2;", null);;
+        Cursor unCurseur = mDb.rawQuery("SELECT m.id_my_equipement, e.id_equipement, e.nom_equipement, e.description_equipement,e.attribut_equipement, e.gain_equipement,e.type_equipement, e.prix_equipement, m.equip  FROM MyEquipement m, Equipement e WHERE m.id_joueur = 1 AND m.id_equipement = e.id_equipement AND e.type_equipement = 2;", null);;
         if(i == 0)
         {
-            unCurseur = mDb.rawQuery("SELECT m.id_my_equipment, e.id_equipment, e.nom_equipment, e.description_equipment,e.attribut_equipment, e.gain_equipment,e.type_equipment, e.cost_equipment, m.equip  FROM MyEquipement m, Equipement e WHERE m.id_joueur = 1 AND m.id_equipment = e.id_equipment AND e.type_equipment = 2;", null);
+            unCurseur = mDb.rawQuery("SELECT m.id_my_equipement, e.id_equipement, e.nom_equipement, e.description_equipement,e.attribut_equipement, e.gain_equipement,e.type_equipement, e.prix_equipement, m.equip  FROM MyEquipement m, Equipement e WHERE m.id_joueur = 1 AND m.id_equipement = e.id_equipement AND e.type_equipement = 2;", null);
         }
         else if(i == 1){
             //object -potion...
-            unCurseur = mDb.rawQuery("SELECT m.id_my_equipment,e.id_equipment, e.nom_equipment, e.description_equipment,e.attribut_equipment, e.gain_equipment,e.type_equipment, e.cost_equipment, m.equip  FROM MyEquipement m, Equipement e WHERE m.id_joueur = 1 AND m.id_equipment = e.id_equipment AND e.type_equipment = 1;", null);
+            unCurseur = mDb.rawQuery("SELECT m.id_my_equipement,e.id_equipement, e.nom_equipement, e.description_equipement,e.attribut_equipement, e.gain_equipement,e.type_equipement, e.prix_equipement, m.equip  FROM MyEquipement m, Equipement e WHERE m.id_joueur = 1 AND m.id_equipement = e.id_equipement AND e.type_equipement = 1;", null);
         }
         else if(i == 2)
         {
-            //equipment equip
-            unCurseur = mDb.rawQuery("SELECT m.id_my_equipment,e.id_equipment, e.nom_equipment, e.description_equipment,e.attribut_equipment, e.gain_equipment,e.type_equipment, e.cost_equipment, m.equip  FROM MyEquipement m, Equipement e WHERE m.id_joueur = 1 AND m.id_equipment = e.id_equipment AND m.equip = 1;", null);
+            //equipement equip
+            unCurseur = mDb.rawQuery("SELECT m.id_my_equipement,e.id_equipement, e.nom_equipement, e.description_equipement,e.attribut_equipement, e.gain_equipement,e.type_equipement, e.prix_equipement, m.equip  FROM MyEquipement m, Equipement e WHERE m.id_joueur = 1 AND m.id_equipement = e.id_equipement AND m.equip = 1;", null);
 
         }
         else if(i == 3)
         {
-            //equipment buy user
-            unCurseur = mDb.rawQuery("SELECT m.id_my_equipment,e.id_equipment, e.nom_equipment, e.description_equipment,e.attribut_equipment, e.gain_equipment,e.type_equipment, e.cost_equipment, m.equip  FROM MyEquipement m, Equipement e WHERE m.id_joueur = 1 AND m.id_equipment = e.id_equipment AND e.type_equipment != 1;", null);
+            //equipement buy user
+            unCurseur = mDb.rawQuery("SELECT m.id_my_equipement,e.id_equipement, e.nom_equipement, e.description_equipement,e.attribut_equipement, e.gain_equipement,e.type_equipement, e.prix_equipement, m.equip  FROM MyEquipement m, Equipement e WHERE m.id_joueur = 1 AND m.id_equipement = e.id_equipement AND e.type_equipement != 1;", null);
 
         }
 
@@ -158,7 +158,7 @@ public class MonEquipementDAO extends A_DAOBase{
                 equipement.setDescription(unCurseur.getString(unCurseur.getColumnIndex(descriptionEquipement)));
                 equipement.setGain(unCurseur.getInt(unCurseur.getColumnIndex(gainEquipement)));
                 equipement.setType(unCurseur.getInt(unCurseur.getColumnIndex(typeEquipement)));
-                equipement.setCost(unCurseur.getInt(unCurseur.getColumnIndex(costEquipement)));
+                equipement.setPrix(unCurseur.getInt(unCurseur.getColumnIndex(prixEquipement)));
 
                 monEquipement.setId(unCurseur.getInt(unCurseur.getColumnIndex(idMyEquipement)));
                 monEquipement.setEquip(unCurseur.getInt(unCurseur.getColumnIndex(equip)));
@@ -180,7 +180,7 @@ public class MonEquipementDAO extends A_DAOBase{
         ArrayList<MonEquipement> getAllMonEquipement = new ArrayList<>();
 
         //defenseault au cas ou
-        Cursor unCurseur = mDb.rawQuery("SELECT m.id_my_equipment, e.id_equipment, e.nom_equipment, e.description_equipment,e.attribut_equipment, e.gain_equipment,e.type_equipment, e.cost_equipment, m.equip  FROM MyEquipement m, Equipement e WHERE m.id_joueur = 1 AND m.id_equipment = e.id_equipment AND e.type_equipment = '"+ i + "' ;", null);;
+        Cursor unCurseur = mDb.rawQuery("SELECT m.id_my_equipement, e.id_equipement, e.nom_equipement, e.description_equipement,e.attribut_equipement, e.gain_equipement,e.type_equipement, e.prix_equipement, m.equip  FROM MyEquipement m, Equipement e WHERE m.id_joueur = 1 AND m.id_equipement = e.id_equipement AND e.type_equipement = '"+ i + "' ;", null);;
         if (unCurseur.getCount() == 0)
         {
 
@@ -197,7 +197,7 @@ public class MonEquipementDAO extends A_DAOBase{
                 equipement.setDescription(unCurseur.getString(unCurseur.getColumnIndex(descriptionEquipement)));
                 equipement.setGain(unCurseur.getInt(unCurseur.getColumnIndex(gainEquipement)));
                 equipement.setType(unCurseur.getInt(unCurseur.getColumnIndex(typeEquipement)));
-                equipement.setCost(unCurseur.getInt(unCurseur.getColumnIndex(costEquipement)));
+                equipement.setPrix(unCurseur.getInt(unCurseur.getColumnIndex(prixEquipement)));
 
                 monEquipement.setId(unCurseur.getInt(unCurseur.getColumnIndex(idMyEquipement)));
                 monEquipement.setEquip(unCurseur.getInt(unCurseur.getColumnIndex(equip)));
@@ -212,35 +212,4 @@ public class MonEquipementDAO extends A_DAOBase{
         return getAllMonEquipement;
 
     }
-
-
-
-
-    /*public Quete getById(int id) {
-        this.open();
-        Quete quete = new Quete();
-        Cursor unCurseur = mDb.rawQuery("SELECT * FROM Quete;", null);
-
-        if(unCurseur.getCount() == 0)
-        {
-            quete.setId(0);
-            quete.setNom("Error");
-            quete.setMoney(0);
-            quete.setNiveau(0);
-            quete.setMonsterInformation("error");
-
-        }
-
-        if (unCurseur.moveToFirst()) {
-            quete.setId(unCurseur.getInt(unCurseur.getColumnIndex(idQuete)));
-            quete.setNom(unCurseur.getString(unCurseur.getColumnIndex(nomQuete)));
-            quete.setNiveau(unCurseur.getInt(unCurseur.getColumnIndex(niveauQuete)));
-            quete.setMoney(unCurseur.getInt(unCurseur.getColumnIndex(moneyQuete)));
-            quete.setMonsterInformation(unCurseur.getString(unCurseur.getColumnIndex(monsterQuete)));
-        }
-        this.close();
-        return quete;
-
-    }*/
-
 }

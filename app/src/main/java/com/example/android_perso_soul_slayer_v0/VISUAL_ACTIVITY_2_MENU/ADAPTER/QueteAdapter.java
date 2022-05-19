@@ -51,11 +51,11 @@ public class QueteAdapter extends BaseAdapter {
         Quete quete = (Quete) getItem(i);
 
         String nom = quete.getNom();
-        TextView itemNomView = view.findViewById(R.id.QueteNom);
-        TextView itemRewardView = view.findViewById(R.id.QueteRecompence);
-        TextView itemNiveauView = view.findViewById(R.id.QueteNiveau);
+        TextView itemNomView = view.findViewById(R.id.NomQuete);
+        TextView itemRewardView = view.findViewById(R.id.RecompenceQuete);
+        TextView itemNiveauView = view.findViewById(R.id.NiveauQuete);
         itemNomView.setText(nom);
-        itemRewardView.setText("REWARD : " + quete.getMoney());
+        itemRewardView.setText("REWARD : " + quete.getArgent());
         itemNiveauView.setText("STARS : " + quete.getNiveau());
 
         view.setOnClickListener(new View.OnClickListener() {
@@ -65,7 +65,7 @@ public class QueteAdapter extends BaseAdapter {
 
                 SharedPreferences prefs = context.getSharedPreferences("session", Context.MODE_PRIVATE);
                 SharedPreferences.Editor shared = prefs.edit();
-                shared.putInt("monster", queteList.get(i).getMonsterId());
+                shared.putInt("monster", queteList.get(i).getMonstre());
                 shared.putInt("idQuest", queteList.get(i).getId());
                 shared.apply();
 

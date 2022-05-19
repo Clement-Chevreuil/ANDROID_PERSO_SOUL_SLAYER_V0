@@ -5,38 +5,41 @@ public class Quete {
     int id;
     public String nom;
     public int niveau;
-    public int monsterId;
-    public int money;
-    public int clear;
+    public int monstre;
+    public int argent;
+    public int nombre;
 
-    public Quete(int id, String nom, int niveau, int monsterId, int money, int clear) {
+    //CONSTRUCTEUR
+    public Quete(int id, String nom, int niveau, int monstre, int argent, int nombre) {
         this.id = id;
         this.nom = nom;
         this.niveau = niveau;
-        this.monsterId = monsterId;
-        this.money = money;
-        this.clear = clear;
+        this.monstre = monstre;
+        this.argent = argent;
+        this.nombre = nombre;
     }
 
-    public Quete(String nom, int niveau, int monster, int clear) { this.nom = nom; this.niveau = niveau; this.monsterId = monster; this.clear = clear;}
+    public Quete(String nom, int niveau, int monstre, int nombre) { this.nom = nom; this.niveau = niveau; this.monstre = monstre; this.nombre = nombre;}
 
     public Quete() {}
 
+    //GETTER
     public int getNiveau() { return niveau; }
     public String getNom() {
         return nom;
     }
-    public int getMonsterId() { return monsterId; }
-    public int getMoney() { return money; }
+    public int getMonstre() { return monstre; }
+    public int getArgent() { return argent; }
     public int getId() { return id; }
-    public int getClear() { return clear; }
+    public int getNombre() { return nombre; }
 
-    public void setMonsterId(int monsterId) { this.monsterId = monsterId; }
+    //SETTER
+    public void setMonstre(int monstre) { this.monstre = monstre; }
     public void setNiveau(int niveau) { this.niveau = niveau; }
     public void setNom(String nom) {
         this.nom = nom;
     }
-    public void setMoney(int money) { this.money = money; }
+    public void setArgent(int argent) { this.argent = argent; }
     public void setId(int id) { this.id = id; }
-    public void setClear(int clear) { this.clear = clear; }
+    public void setNombre(int nombre) { this.nombre = nombre; }
 }

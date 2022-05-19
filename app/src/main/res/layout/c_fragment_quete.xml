@@ -7,7 +7,7 @@
 
 
     <TextView
-        android:id="@+id/QueteNom"
+        android:id="@+id/NomQuete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
@@ -20,22 +20,22 @@
         android:textSize="20sp" />
 
     <TextView
-        android:id="@+id/QueteRecompence"
+        android:id="@+id/RecompenceQuete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/QueteNom"
+        android:layout_below="@id/NomQuete"
         android:layout_margin="@dimen/text_margin"
         android:layout_alignParentRight="true"
         android:text="En attendant"
         android:textAppearance="?attr/textAppearanceListItem" />
 
     <TextView
-        android:id="@+id/QueteNiveau"
+        android:id="@+id/NiveauQuete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/text_margin"
         android:textAppearance="?attr/textAppearanceListItem"
         android:text="En attendant"
-        android:layout_below="@+id/QueteNom"
+        android:layout_below="@+id/NomQuete"
         android:layout_alignParentLeft="true"/>
 </RelativeLayout>

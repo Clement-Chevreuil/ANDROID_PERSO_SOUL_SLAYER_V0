@@ -3,7 +3,7 @@ package com.example.android_perso_soul_slayer_v0.A1_MODEL;
 public class MonSort {
 
     int id;
-    Joueur Joueur;
+    Joueur joueur;
     Sort sort;
 
     //CONSTRUCTOR
@@ -11,11 +11,11 @@ public class MonSort {
 
     //GETTER
     public int getId() { return id; }
-    public Joueur getJoueur() { return Joueur; }
-    public Sort getSpell() { return sort; }
+    public Joueur getJoueur() { return joueur; }
+    public Sort getSort() { return sort; }
 
     //SETTER
     public void setId(int id) { this.id = id; }
-    public void setJoueur(Joueur Joueur) { this.Joueur = Joueur; }
-    public void setSpell(Sort sort) { this.sort = sort; }
+    public void setJoueur(Joueur joueur) { this.joueur = joueur; }
+    public void setSort(Sort sort) { this.sort = sort; }
 }
