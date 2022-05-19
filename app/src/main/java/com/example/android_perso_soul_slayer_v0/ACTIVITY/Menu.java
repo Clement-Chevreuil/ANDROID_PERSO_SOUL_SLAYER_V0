@@ -31,7 +31,7 @@ public class Menu extends AppCompatActivity {
 
         //OBTENIR DONNEES DE SQLLITE
         JoueurDAO joueurDAO = new JoueurDAO(getBaseContext());
-        Joueur myJoueur = joueurDAO.getMyJoueur();
+        Joueur monJoueur = joueurDAO.getMonJoueur();
 
         //LIEN VERS L'INTERFACE
         nom = findViewById(R.id.Nom);
@@ -42,14 +42,14 @@ public class Menu extends AppCompatActivity {
         mana = findViewById(R.id.Mana);
         attaque = findViewById(R.id.Attaque);
 
-        vie.setText(myJoueur.getVie_max() + "/" + myJoueur.getVie() + " PV" );
-        attaque.setText(myJoueur.getAttaque() + " ATK" );
-        mana.setText(myJoueur.getMana() + "/" + myJoueur.getMana_max() + " MANA" );
+        vie.setText(monJoueur.getVie_max() + "/" + monJoueur.getVie() + " PV" );
+        attaque.setText(monJoueur.getAttaque() + " ATK" );
+        mana.setText(monJoueur.getMana() + "/" + monJoueur.getMana_max() + " MANA" );
 
         //CHANGEMENT VALEUR
-        nom.setText(myJoueur.getNom());
-        argent.setText("Argent : " + String.valueOf(myJoueur.getArgent()));
-        niveau.setText("Niveau : " + String.valueOf(myJoueur.getNiveau()));
+        nom.setText(monJoueur.getNom());
+        argent.setText("Argent : " + String.valueOf(monJoueur.getArgent()));
+        niveau.setText("Niveau : " + String.valueOf(monJoueur.getNiveau()));
 
         //NAVIGATION
         NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.Navigation);

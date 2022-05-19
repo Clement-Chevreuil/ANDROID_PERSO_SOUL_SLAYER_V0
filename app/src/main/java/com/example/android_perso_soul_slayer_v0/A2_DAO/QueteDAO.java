@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.util.Log;
 
 import com.example.android_perso_soul_slayer_v0.A1_MODEL.Quete;
 
@@ -27,22 +28,23 @@ public class QueteDAO extends A_DAOBase{
         //createQuete();
     }
 
-    public void add(Quete quete) {
-
+    public void add(Quete quete)
+    {
         ContentValues values = new ContentValues();
-
         values.put(nomQuete, quete.getNom());
         values.put(niveauQuete, quete.getNiveau());
         values.put(monstreQuete, quete.getMonstre());
         values.put(argentQuete, quete.getArgent());
         values.put(nombreQuete, quete.getNombre());
-
         mDb.insert(nomTableQuete, null, values);
     }
-    public void delete(long id) {
+    public void delete(long id)
+    {
         mDb.delete(nomTableQuete, idQuete + " = ?", new String[] {String.valueOf(id)});
     }
-   public void update(Quete m) {
+
+    public void update(Quete m)
+    {
         open();
         ContentValues value = new ContentValues();
         value.put(nombreQuete, m.getNombre() - 1);
@@ -51,22 +53,70 @@ public class QueteDAO extends A_DAOBase{
     }
 
     @SuppressLint("Range")
-    public List<Quete> getAll(int i) {
+    public List<Quete> getAll()
+    {
         this.open();
         Cursor unCurseur;
-        List<Quete> queteList = new ArrayList<>();
-        if(i == 0) { unCurseur = mDb.rawQuery("SELECT * FROM Quete;", null); }
-        else if(i == 1) { unCurseur = mDb.rawQuery("SELECT * FROM Quete WHERE nombre_quete != 0 OR nombre_quete IS NOT NULL;", null); }
-        else if(i == 2) { unCurseur = mDb.rawQuery("SELECT * FROM Quete WHERE nombre_quete = 0 OR nombre_quete IS NULL;", null); }
-        else { unCurseur = mDb.rawQuery("SELECT * FROM Quete;", null); }
+        unCurseur = mDb.rawQuery("SELECT * FROM Quete;", null);
+        List<Quete> listQuete = getQuetes(unCurseur);
+        this.close();
+        return listQuete;
+    }
 
+    @SuppressLint("Range")
+    public List<Quete> getAllExistant()
+    {
+        this.open();
+        Cursor unCurseur;
+        unCurseur = mDb.rawQuery("SELECT * FROM Quete WHERE nombre_quete != 0 OR nombre_quete IS NOT NULL;", null);
+        List<Quete> listQuete = getQuetes(unCurseur);
+        this.close();
+        return listQuete;
+    }
+
+    @SuppressLint("Range")
+    public List<Quete> getAllFini()
+    {
+        this.open();
+        Cursor unCurseur;
+        unCurseur = mDb.rawQuery("SELECT * FROM Quete WHERE nombre_quete = 0 OR nombre_quete IS NULL;", null);
+        List<Quete> listQuete = getQuetes(unCurseur);
+        this.close();
+        return listQuete;
+    }
+
+    public Quete getById(int id)
+    {
+        this.open();
+        Cursor unCurseur = mDb.rawQuery("SELECT * FROM Quete WHERE id_quete = '" + id + "';", null);
+        List<Quete> listQuete = getQuetes(unCurseur);
+        this.close();
+        return listQuete.get(0);
+    }
+
+    public int getLastId()
+    {
+        int i = 1;
+        Cursor deCurseur = mDb.rawQuery("SELECT MAX(id_quete) as test FROM Quete ;", null);
+        if (deCurseur.moveToFirst())
+        {
+            i = deCurseur.getInt(deCurseur.getColumnIndex("test"));
+        }
+        return i;
+    }
+
+    @SuppressLint("Range")
+    public List<Quete> getQuetes(Cursor unCurseur)
+    {
+        List<Quete> queteList = new ArrayList<>();
         if(unCurseur.getCount() == 0)
         {
             queteList = createQuete();
         }
-
-        else if (unCurseur.moveToFirst()) {
-            do {
+        else if (unCurseur.moveToFirst())
+        {
+            while (unCurseur.moveToNext())
+            {
                 Quete quete = new Quete();
                 quete.setId(unCurseur.getInt(unCurseur.getColumnIndex(idQuete)));
                 quete.setNom(unCurseur.getString(unCurseur.getColumnIndex(nomQuete)));
@@ -76,57 +126,9 @@ public class QueteDAO extends A_DAOBase{
                 quete.setNombre(unCurseur.getInt(unCurseur.getColumnIndex(nombreQuete)));
                 queteList.add(quete);
             }
-            while (unCurseur.moveToNext());
             Collections.shuffle(queteList);
         }
-        this.close();
         return queteList;
-
-    }
-
-
-
-    @SuppressLint("Range")
-    public Quete getById(int id) {
-        this.open();
-        Quete quete = new Quete();
-        Cursor unCurseur = mDb.rawQuery("SELECT * FROM Quete WHERE id_quete = '" + id + "';", null);
-
-        if(unCurseur.getCount() == 0)
-        {
-
-
-        }
-
-        else if (unCurseur.moveToFirst()) {
-                quete.setId(unCurseur.getInt(unCurseur.getColumnIndex(idQuete)));
-                quete.setNom(unCurseur.getString(unCurseur.getColumnIndex(nomQuete)));
-                quete.setNiveau(unCurseur.getInt(unCurseur.getColumnIndex(niveauQuete)));
-                quete.setArgent(unCurseur.getInt(unCurseur.getColumnIndex(argentQuete)));
-                quete.setMonstre(unCurseur.getInt(unCurseur.getColumnIndex(monstreQuete)));
-                quete.setNombre(unCurseur.getInt(unCurseur.getColumnIndex(nombreQuete)));
-        }
-        this.close();
-        return quete;
-
-    }
-
-    @SuppressLint("Range")
-    public int getLastId() {
-
-        int i = 1;
-        Cursor deCurseur = mDb.rawQuery("SELECT MAX(id_quete) as test FROM Quete ;", null);
-
-        if(deCurseur.getCount() == 0)
-        {
-
-        }
-
-        else if (deCurseur.moveToFirst()) {
-            i = deCurseur.getInt(deCurseur.getColumnIndex("test"));
-        }
-
-        return i;
     }
 
     public List<Quete> createQuete()
@@ -162,7 +164,6 @@ public class QueteDAO extends A_DAOBase{
 
         return queteList;
     }
-
 
 
 }

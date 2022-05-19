@@ -43,8 +43,8 @@ public class Combat extends AppCompatActivity {
         joueurDAO = new JoueurDAO(getBaseContext());
         monEquipementDAO = new MonEquipementDAO(getBaseContext());
 
-        joueur = joueurDAO.getMyJoueur();
-        joueur.setMonEquipementList(monEquipementDAO.getAllEquipement(2));
+        joueur = joueurDAO.getMonJoueur();
+        joueur.setMonEquipementList(monEquipementDAO.getAllEquipement());
 
         joueur.adaptEquip();
 

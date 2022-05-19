@@ -42,7 +42,7 @@ public class JoueurInformations extends Fragment {
 
         int type = getArguments().getInt("type");
 
-        Joueur joueur1 = joueurDAO.getMyJoueur();
+        Joueur joueur1 = joueurDAO.getMonJoueur();
         List<MonEquipement> monEquipement = monEquipementDAO.getAllEquipementByType(type);
 
         joueur1.setMonEquipementList(monEquipement);

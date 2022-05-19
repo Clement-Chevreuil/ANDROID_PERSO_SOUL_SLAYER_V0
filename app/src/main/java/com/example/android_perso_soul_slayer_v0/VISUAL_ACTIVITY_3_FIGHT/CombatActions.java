@@ -75,7 +75,7 @@ public class CombatActions {
         list = activity.findViewById(R.id.ListObjet);
 
         joueurDAO = new JoueurDAO(context);
-        Joueur = joueurDAO.getMyJoueur();
+        Joueur = joueurDAO.getMonJoueur();
         monEquipementDAO = new MonEquipementDAO(context);
         equipementDAO = new EquipementDAO(context);
 
@@ -95,7 +95,7 @@ public class CombatActions {
         String t = numberEnemyvie.getText().toString();
         enemy.setVie(Integer.valueOf(separeted[0].replaceAll("\\s+","")));
 
-        Joueur.setMonEquipementList(monEquipementDAO.getAllEquipement(2));
+        Joueur.setMonEquipementList(monEquipementDAO.getAllEquipement());
         Joueur.adaptEquip();
     }
 

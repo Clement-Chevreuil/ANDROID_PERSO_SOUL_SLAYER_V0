@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,7 +32,7 @@ public class QueteList extends Fragment {
 
         View view = inflater.inflate(R.layout.c_fragment_quetes, container, false);
         QueteDAO queteDAO = new QueteDAO(getContext());
-        List<Quete> allQueteList = queteDAO.getAll(1);
+        List<Quete> allQueteList = queteDAO.getAllExistant();
 
         Collections.sort(allQueteList, new Comparator<Quete>() {
             @Override
@@ -39,7 +40,6 @@ public class QueteList extends Fragment {
                 return quete1.getNom().compareTo(quete2.getNom());
             }
         });
-
 
         ListView MagasinListView = view.findViewById(R.id.ListQuete);
         MagasinListView.setAdapter(new QueteAdapter(getContext(), allQueteList));

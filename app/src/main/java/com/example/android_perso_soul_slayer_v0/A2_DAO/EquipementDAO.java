@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.util.Log;
 
 
 import com.example.android_perso_soul_slayer_v0.A1_MODEL.Equipement;
@@ -24,14 +25,13 @@ public class EquipementDAO extends A_DAOBase {
     private static final String prixEquipement= "prix_equipement";
     private static final String quantiteEquipement= "quantite_equipement";
 
-
     public EquipementDAO(Context pContext) {
         super(pContext);
     }
-    public void add(Equipement e) {
 
+    public void add(Equipement e)
+    {
         ContentValues values = new ContentValues();
-
         values.put(idEquipement, e.getId());
         values.put(nomEquipement, e.getNom());
         values.put(descriptionEquipement, e.getDescription());
@@ -40,12 +40,15 @@ public class EquipementDAO extends A_DAOBase {
         values.put(typeEquipement, e.getType());
         mDb.insert(nomTableEquipement, null, values);
     }
-    public void delete(long id) {
+    public void delete(long id)
+    {
         open();
         mDb.delete(nomTableEquipement, idEquipement + " = ?", new String[] {String.valueOf(id)});
         close();
     }
-    public void update(Equipement e) {
+
+    public void update(Equipement e)
+    {
         open();
         ContentValues value = new ContentValues();
         value.put(nomEquipement, e.getNom());
@@ -58,50 +61,73 @@ public class EquipementDAO extends A_DAOBase {
         mDb.update(nomTableEquipement, value, idEquipement  + " = ?", new String[] {String.valueOf(e.getId())});
         close();
     }
-    public void updateBuy(Equipement m) {
+
+    public void updateBuy(Equipement m)
+    {
         open();
         ContentValues value = new ContentValues();
         value.put(quantiteEquipement, m.getQuantite());
         mDb.update(nomTableEquipement, value, idEquipement  + " = ?", new String[] {String.valueOf(m.getId())});
         close();
     }
-    @SuppressLint("Range")
-    public List<Equipement> allEquipement(int i, int position) {
 
-        position = position + 1;
+    public List<Equipement> getAll()
+    {
         List<Equipement> allEquipement = new ArrayList<Equipement>();
         this.open();
         Cursor unCurseur;
-        if(i == 1) { unCurseur = mDb.rawQuery("SELECT * FROM Equipement;", null); }
+        unCurseur = mDb.rawQuery("SELECT * FROM Equipement;", null);
+        allEquipement = getEquipements(unCurseur, -1);
+        this.close();
+        return allEquipement;
+    }
 
-        if(i == 2)
-        {
-            unCurseur = mDb.rawQuery("SELECT * " +
-                    "FROM Equipement e " +
-                    "WHERE e.quantite_equipement != 0 " +
-                    "AND e.id_equipement " +
-                    "NOT IN (" +
-                    "SELECT m.id_equipement " +
-                    "FROM MyEquipement m, Equipement f " +
-                    "WHERE m.id_equipement = f.id_equipement " +
-                    "AND f.quantite_equipement != -1) " +
-                    "AND e.type_equipement = '" + position + "';", null);
-        }
-        else
-        { unCurseur = mDb.rawQuery("" +
-                "SELECT * " +
-                "FROM Equipement e " +
-                "WHERE e.quantite_equipement != 0 " +
-                "AND e.id_equipement " +
-                "NOT IN (" +
-                "SELECT m.id_equipement " +
-                "FROM MyEquipement m, Equipement f " +
-                "WHERE m.id_equipement = f.id_equipement " +
-                "AND f.prix_equipement != -1) ;", null); }
+    public List<Equipement> getEquipementBoutiqueType(int position)
+    {
+        position = position + 1;
+        this.open();
+        Cursor unCurseur;
+        unCurseur = mDb.rawQuery("SELECT * " +
+            "FROM Equipement e " +
+            "WHERE e.quantite_equipement != 0 " +
+            "AND e.id_equipement " +
+            "NOT IN (" +
+            "SELECT m.id_equipement " +
+            "FROM MonEquipement m, Equipement f " +
+            "WHERE m.id_equipement = f.id_equipement " +
+            "AND f.quantite_equipement != -1) " +
+                "AND e.type_equipement = '" + position + "';", null);
+        List<Equipement> allEquipement = getEquipements(unCurseur, position);
+        this.close();
+        return allEquipement;
+    }
 
+    public List<Equipement> getEquipementNonAchete()
+    {
+        this.open();
+        Cursor unCurseur;
+        unCurseur = mDb.rawQuery("" +
+            "SELECT * " +
+            "FROM Equipement e " +
+            "WHERE e.quantite_equipement != 0 " +
+            "AND e.id_equipement " +
+            "NOT IN (" +
+            "SELECT m.id_equipement " +
+            "FROM MonEquipement m, Equipement f " +
+            "WHERE m.id_equipement = f.id_equipement " +
+            "AND f.prix_equipement != -1) ;", null);
+        List<Equipement> allEquipement = getEquipements(unCurseur, -1);
+        this.close();
+        return allEquipement;
+    }
+
+    @SuppressLint("Range")
+    public List<Equipement> getEquipements(Cursor unCurseur, int position)
+    {
+        List<Equipement> listEquipement = new ArrayList<>();
         if(unCurseur.getCount() == 0)
         {
-            //allEquipement = createEquipement(position);
+            listEquipement = createEquipement(position);
         }
         else if (unCurseur.moveToFirst()) {
             do {
@@ -115,14 +141,14 @@ public class EquipementDAO extends A_DAOBase {
                 equipement.setType(unCurseur.getInt(unCurseur.getColumnIndex(typeEquipement)));
                 equipement.setPrix(unCurseur.getInt(unCurseur.getColumnIndex(prixEquipement)));
                 equipement.setQuantite(unCurseur.getInt(unCurseur.getColumnIndex(quantiteEquipement)));
-                allEquipement.add(equipement);
+                listEquipement.add(equipement);
             }
             while (unCurseur.moveToNext());
-            Collections.shuffle(allEquipement);
+            Collections.shuffle(listEquipement);
         }
-        this.close();
-        return allEquipement;
+        return  listEquipement;
     }
+
     public List<Equipement> createEquipement(int position)
     {
         List<Equipement> equipementList = new ArrayList<>();
@@ -160,9 +186,11 @@ public class EquipementDAO extends A_DAOBase {
         }
         else if(position == 7){
 
-
         }
-
+        else
+        {
+            return null;
+        }
 
         for (Equipement e : equipementList)
         {
@@ -179,5 +207,4 @@ public class EquipementDAO extends A_DAOBase {
 
         return equipementList;
     }
-
 }
