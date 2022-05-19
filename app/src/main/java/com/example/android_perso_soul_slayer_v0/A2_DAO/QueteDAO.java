@@ -94,6 +94,7 @@ public class QueteDAO extends A_DAOBase{
         return listQuete.get(0);
     }
 
+    @SuppressLint("Range")
     public int getLastId()
     {
         int i = 1;
@@ -115,7 +116,7 @@ public class QueteDAO extends A_DAOBase{
         }
         else if (unCurseur.moveToFirst())
         {
-            while (unCurseur.moveToNext())
+            do
             {
                 Quete quete = new Quete();
                 quete.setId(unCurseur.getInt(unCurseur.getColumnIndex(idQuete)));
@@ -126,6 +127,7 @@ public class QueteDAO extends A_DAOBase{
                 quete.setNombre(unCurseur.getInt(unCurseur.getColumnIndex(nombreQuete)));
                 queteList.add(quete);
             }
+            while (unCurseur.moveToNext());
             Collections.shuffle(queteList);
         }
         return queteList;
@@ -149,19 +151,7 @@ public class QueteDAO extends A_DAOBase{
         queteList.add(quete4);
         queteList.add(quete5);
 
-
-        for (Quete quete : queteList)
-        {
-            ContentValues values1 = new ContentValues();
-            values1.put(idQuete, quete.getId());
-            values1.put(nomQuete, quete.getNom());
-            values1.put(niveauQuete, quete.getNiveau());
-            values1.put(monstreQuete, quete.getMonstre());
-            values1.put(argentQuete, quete.getArgent());
-            values1.put(nombreQuete, quete.getNombre());
-            mDb.insert(nomTableQuete, null, values1);
-        }
-
+        for (Quete quete : queteList) { add(quete); }
         return queteList;
     }
 
