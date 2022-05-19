@@ -32,12 +32,14 @@ public class Equipement {
         this.prix = prix;
     }
 
+    //CONSTRUCTEUR
     public Equipement(String nom) { this.nom = nom; }
     public Equipement(int id) {
         this.id = id;
     }
     public Equipement() {}
 
+    //GETTER
     public int getPrix() { return prix; }
     public int getId() {
         return id;
@@ -57,6 +59,7 @@ public class Equipement {
     }
     public int getQuantite() { return quantite; }
 
+    //SETTER
     public void setPrix(int prix) { this.prix = prix; }
     public void setId(int id) {
         this.id = id;

@@ -13,6 +13,7 @@ public class Sort {
     public int mana;
 
 
+    //CONSTRUCTEUR
     public Sort(int id, String nom, String attribut, int gain, int type, int prix, String description, int quantite, int mana) {
         this.id = id;
         this.nom = nom;
@@ -40,6 +41,7 @@ public class Sort {
     }
     public Sort() {}
 
+    //GETTER
     public int getPrix() { return prix; }
     public int getId() {
         return id;
@@ -60,6 +62,7 @@ public class Sort {
     public int getQuantite() { return quantite; }
     public int getMana() { return mana; }
 
+    //SETTER
     public void setPrix(int prix) { this.prix = prix; }
     public void setId(int id) {
         this.id = id;

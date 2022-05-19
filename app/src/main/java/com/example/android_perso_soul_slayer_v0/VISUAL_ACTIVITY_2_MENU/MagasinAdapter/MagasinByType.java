@@ -2,6 +2,7 @@ package com.example.android_perso_soul_slayer_v0.VISUAL_ACTIVITY_2_MENU.MagasinA
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -60,18 +61,8 @@ public class MagasinByType extends Fragment {
         TextView title = result.findViewById(R.id.TypeObjet);
         title.setText(String.valueOf(getArguments().getString("color")));
 
-        Collections.sort(listEquipement, new Comparator<Equipement>() {
-            @Override
-            public int compare(Equipement equipement1, Equipement equipement2) {
-                if(equipement1.getType() < equipement2.getType())
-                { return -1;}
-                else if(equipement1.getType() > equipement2.getType()) { return 1;}
-                else{return equipement1.getNom().compareTo(equipement2.getNom());}
-            }
-        });
 
-
-        ListView MagasinListView = result.findViewById(R.id.ListEquipement);
+        ListView MagasinListView = result.findViewById(R.id.ListObjet);
         MagasinListView.setAdapter(new MagasinAdapter(getContext(), listEquipement, getActivity()));
 
 

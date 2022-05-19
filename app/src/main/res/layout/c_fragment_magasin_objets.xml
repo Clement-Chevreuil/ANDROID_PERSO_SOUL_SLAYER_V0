@@ -22,13 +22,12 @@
         android:textSize="20dp" />
 
     <ListView
-        android:layout_below="@+id/TypeObjet"
         android:id="@+id/ListObjet"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/TypeObjet"
         android:layout_marginBottom="60dp"
-        tools:listitem="@layout/c_fragment_magasin_objet"
-        />
+        tools:listitem="@layout/c_fragment_magasin_objet" />
 
 
 

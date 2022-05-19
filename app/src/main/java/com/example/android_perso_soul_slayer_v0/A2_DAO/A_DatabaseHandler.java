@@ -49,7 +49,7 @@ public class A_DatabaseHandler extends SQLiteOpenHelper {
     private static final String gainEquipement = "gain_equipement";
     private static final String typeEquipement = "type_equipement";
     private static final String prixEquipement = "prix_equipement";
-    private static final String buy = "buy_equipement";
+    private static final String quantiteEquipement = "quantite_equipement";
 
     private static final String reqCreateEquipement =
             "CREATE TABLE " + nomTableEquipement + " ("
@@ -59,7 +59,7 @@ public class A_DatabaseHandler extends SQLiteOpenHelper {
                     + gainEquipement +  " INTEGER,"
                     + typeEquipement + " INTEGER,"
                     + prixEquipement + " INTEGER,"
-                    + buy + " INTEGER DEFAULT 0,"
+                    + quantiteEquipement + " INTEGER DEFAULT 0,"
                     + descriptionEquipement + " TEXT);";
 
     //Sort

@@ -78,20 +78,20 @@ public class EquipementDAO extends A_DAOBase {
         {
             unCurseur = mDb.rawQuery("SELECT * " +
                     "FROM Equipement e " +
-                    "WHERE e.buy_equipement != 0 " +
+                    "WHERE e.quantite_equipement != 0 " +
                     "AND e.id_equipement " +
                     "NOT IN (" +
                     "SELECT m.id_equipement " +
                     "FROM MyEquipement m, Equipement f " +
                     "WHERE m.id_equipement = f.id_equipement " +
-                    "AND f.buy_equipement != -1) " +
+                    "AND f.quantite_equipement != -1) " +
                     "AND e.type_equipement = '" + position + "';", null);
         }
         else
         { unCurseur = mDb.rawQuery("" +
                 "SELECT * " +
                 "FROM Equipement e " +
-                "WHERE e.buy_equipement != 0 " +
+                "WHERE e.quantite_equipement != 0 " +
                 "AND e.id_equipement " +
                 "NOT IN (" +
                 "SELECT m.id_equipement " +
@@ -101,7 +101,7 @@ public class EquipementDAO extends A_DAOBase {
 
         if(unCurseur.getCount() == 0)
         {
-            allEquipement = createEquipement(position);
+            //allEquipement = createEquipement(position);
         }
         else if (unCurseur.moveToFirst()) {
             do {

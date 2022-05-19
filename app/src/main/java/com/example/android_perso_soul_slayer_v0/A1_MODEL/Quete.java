@@ -9,6 +9,7 @@ public class Quete {
     public int argent;
     public int nombre;
 
+    //CONSTRUCTEUR
     public Quete(int id, String nom, int niveau, int monstre, int argent, int nombre) {
         this.id = id;
         this.nom = nom;
@@ -22,6 +23,7 @@ public class Quete {
 
     public Quete() {}
 
+    //GETTER
     public int getNiveau() { return niveau; }
     public String getNom() {
         return nom;
@@ -31,6 +33,7 @@ public class Quete {
     public int getId() { return id; }
     public int getNombre() { return nombre; }
 
+    //SETTER
     public void setMonstre(int monstre) { this.monstre = monstre; }
     public void setNiveau(int niveau) { this.niveau = niveau; }
     public void setNom(String nom) {
