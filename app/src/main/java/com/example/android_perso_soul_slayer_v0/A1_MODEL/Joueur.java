@@ -22,10 +22,9 @@ public class Joueur {
     int precision;
     int endurance;
     int vitesse;
-    int strenght;
-    int weight;
-    int critical;
-    int dexterity;
+
+    int force;
+
 
 
     //FUTURE

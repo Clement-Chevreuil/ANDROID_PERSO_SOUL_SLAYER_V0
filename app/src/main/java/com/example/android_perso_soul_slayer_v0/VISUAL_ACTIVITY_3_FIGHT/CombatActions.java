@@ -30,7 +30,7 @@ public class CombatActions {
 
     Context context;
     Activity activity;
-    TextView informations, ennemieNom, joueurNom, numberEnemyvie,pointVieJoueur, pointManaEnnemie, pointManaJoueur;
+    TextView informations, ennemieNom, joueurNom, pointVieEnnemie,pointVieJoueur, pointManaEnnemie, pointManaJoueur;
     ProgressBar ennemieVie, joueurVie, ennemieMana, joueurMana;
     JoueurDAO joueurDAO;
     Joueur Joueur, enemy;
@@ -53,7 +53,6 @@ public class CombatActions {
     String text3;
     int text2duration;
 
-
     public CombatActions(Activity activity, Context context, FragmentManager support)
     {
         this.activity = activity;
@@ -62,7 +61,7 @@ public class CombatActions {
         informations = activity.findViewById(R.id.Informations);
         joueurVie = activity.findViewById(R.id.VieJoueur);
         pointVieJoueur = activity.findViewById(R.id.PointVieJoueur);
-        numberEnemyvie = activity.findViewById(R.id.PointVieEnnemie);
+        pointVieEnnemie = activity.findViewById(R.id.PointVieEnnemie);
         pointManaEnnemie =  activity.findViewById(R.id.PointManaEnnemie);
         pointManaJoueur =  activity.findViewById(R.id.PointManaJoueur);
         ennemieVie =  activity.findViewById(R.id.VieEnnemie);
@@ -92,8 +91,8 @@ public class CombatActions {
         enemy = new Joueur();
         enemy =enemy.createMonster2(monsterInformation);
 
-        String[] separeted = numberEnemyvie.getText().toString().split("/");
-        String t = numberEnemyvie.getText().toString();
+        String[] separeted = pointVieEnnemie.getText().toString().split("/");
+        String t = pointVieEnnemie.getText().toString();
         enemy.setVie(Integer.valueOf(separeted[0].replaceAll("\\s+","")));
 
         Joueur.setMonEquipementList(monEquipementDAO.getAllEquipement());
@@ -121,12 +120,12 @@ public class CombatActions {
 
                 if(enemy.getVie() <= 0)
                 {
-                   winGame();
+                   gagner();
                 }
                 else
                 {
                     ennemieVie.setProgress(enemy.getVie() * 100 / enemy.getVie_max());
-                    numberEnemyvie.setText(enemy.getVie() + "/" + enemy.getVie_max());
+                    pointVieEnnemie.setText(enemy.getVie() + "/" + enemy.getVie_max());
                     attaqueEnemy(timer);
                 }
             }
@@ -192,12 +191,12 @@ public class CombatActions {
 
         if(enemy.getVie() <= 0)
         {
-            winGame();
+            gagner();
         }
         else
         {
             ennemieVie.setProgress(enemy.getVie() * 100 / enemy.getVie_max());
-            numberEnemyvie.setText(enemy.getVie() + "/" + enemy.getVie_max());
+            pointVieEnnemie.setText(enemy.getVie() + "/" + enemy.getVie_max());
             attaqueEnemy(timer);
 
         }
@@ -297,7 +296,7 @@ public class CombatActions {
 
                 if(Joueur.getVie() <= 0)
                 {
-                    loseGame();
+                    perdre();
                 }
 
                 else
@@ -335,10 +334,10 @@ public class CombatActions {
         }, timer);
     }
 
-    public void winGame()
+    public void gagner()
     {
         ennemieVie.setProgress(0);
-        numberEnemyvie.setText("0/" + enemy.getVie_max());
+        pointVieEnnemie.setText("0/" + enemy.getVie_max());
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
 
@@ -363,7 +362,7 @@ public class CombatActions {
                         if(oldNiveau != Joueur.getNiveau())
                         {
                                     FragmentManager fm = support;
-                                    PopUpNiveauUp popUpNiveauUp = PopUpNiveauUp.newInstance("Titre");
+                                    PopUpMonteeNiveau popUpNiveauUp = PopUpMonteeNiveau.newInstance("Titre");
                                     popUpNiveauUp.show(fm, "e_fragment_niveau_up");
                         }
                         else
@@ -376,7 +375,7 @@ public class CombatActions {
         }, 3000);
     }
 
-    public void loseGame()
+    public void perdre()
     {
         joueurVie.setProgress(0);
         pointVieJoueur.setText("0/" + Joueur.getVie_max());
