@@ -104,7 +104,7 @@ public class MonSortDAO extends A_DAOBase{
         MonSort monSort = new MonSort();
         monSort.setId(1);
         monSort.setSort(sort1);
-        monSort.setJoueur(new Joueur(1));
+        monSort.setJoueur(new Joueur());
         monSortList.add(monSort);
 
         for (MonSort monSort1 : monSortList)

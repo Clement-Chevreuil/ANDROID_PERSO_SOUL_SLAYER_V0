@@ -191,15 +191,6 @@
 
             <TableRow>
 
-                <ProgressBar
-                    android:id="@+id/ManaJoueur"
-                    style="?android:attr/progressBarStyleHorizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:padding="10dp"
-                    android:progress="100" />
-
                 <TextView
                     android:id="@+id/PointManaJoueur"
                     android:layout_width="wrap_content"
@@ -208,6 +199,16 @@
                     android:layout_marginRight="20dp"
                     android:layout_weight="0"
                     android:text="0/0 MANA"
+                    android:textSize="15dp" />
+
+                <TextView
+                    android:id="@+id/PointEnduranceJoueur"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:layout_marginRight="20dp"
+                    android:layout_weight="0"
+                    android:text="0/0 END"
                     android:textSize="15dp" />
             </TableRow>
 

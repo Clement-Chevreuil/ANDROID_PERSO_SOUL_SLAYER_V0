@@ -18,6 +18,7 @@ public class A_DatabaseHandler extends SQLiteOpenHelper {
     private static final String mana = "mana";
     private static final String manaMax = "mana_max";
     private static final String endurance = "endurance";
+    private static final String enduranceMax = "endurance_max";
     private static final String defense = "defense";
     private static final String precision = "precision";
     private static final String password = "password";
@@ -34,6 +35,7 @@ public class A_DatabaseHandler extends SQLiteOpenHelper {
                     + mana + " INTEGER,"
                     + manaMax + " INTEGER,"
                     + endurance + " INTEGER,"
+                    + enduranceMax + " INTEGER,"
                     + defense + " INTEGER,"
                     + precision + " INTEGER,"
                     + vitesse + " INTEGER,"
