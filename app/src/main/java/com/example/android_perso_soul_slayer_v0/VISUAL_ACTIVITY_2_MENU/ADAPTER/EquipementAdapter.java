@@ -61,7 +61,7 @@ public class EquipementAdapter extends BaseAdapter {
 
         MonEquipement monEquipement = equipementList.get(i);
         JoueurDAO joueurDAO = new JoueurDAO(context);
-        Joueur = joueurDAO.getMyJoueur();
+        Joueur = joueurDAO.getMonJoueur();
         Joueur.setMonEquipementList(equipementList);
 
         TextView atk = activity.findViewById(R.id.Attaque);

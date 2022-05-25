@@ -53,7 +53,7 @@ public class CombatActionsEquipement extends Fragment {
 
         Activity app = getActivity();
         MonEquipementDAO monEquipementDAO = new MonEquipementDAO(getContext());
-        List<MonEquipement> listObjectToUse = monEquipementDAO.getAllEquipement(1);
+        List<MonEquipement> listObjectToUse = monEquipementDAO.getMesObjets();
 
 
         ListView listView = (ListView) result.findViewById(R.id.ListObjet);

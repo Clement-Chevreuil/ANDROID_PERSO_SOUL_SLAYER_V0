@@ -86,9 +86,9 @@ public class MagasinAdapter extends BaseAdapter {
             @Override
             public void onClick(View view) {
                 joueurDAO = new JoueurDAO(context);
-                Joueur myJoueur  = joueurDAO.getMyJoueur();
+                Joueur monJoueur  = joueurDAO.getMonJoueur();
 
-                if(myJoueur.getArgent() < equipementList.get(i).getPrix())
+                if(monJoueur.getArgent() < equipementList.get(i).getPrix())
                 {
                     Toast toast = Toast.makeText(context, "NOT MONNEY", Toast.LENGTH_LONG);
                     toast.show();
@@ -97,16 +97,16 @@ public class MagasinAdapter extends BaseAdapter {
                 {
                     MonEquipement monEquipement = new MonEquipement();
                     monEquipement.setEquipement(equipementList.get(i));
-                    monEquipement.setJoueur(myJoueur);
+                    monEquipement.setJoueur(monJoueur);
 
                     MonEquipementDAO monEquipementDAO = new MonEquipementDAO(context);
                     monEquipementDAO.add(monEquipement);
 
                     EquipementDAO equipementDAO = new EquipementDAO(context);
 
-                    int argentJoueur = myJoueur.getArgent() - equipement.getPrix();
-                    myJoueur.setArgent(argentJoueur);
-                    joueurDAO.update(myJoueur);
+                    int argentJoueur = monJoueur.getArgent() - equipement.getPrix();
+                    monJoueur.setArgent(argentJoueur);
+                    joueurDAO.update(monJoueur);
 
                     TextView argent = app.findViewById(R.id.Argent);
                     argent.setText("Argent : " + String.valueOf(argentJoueur));

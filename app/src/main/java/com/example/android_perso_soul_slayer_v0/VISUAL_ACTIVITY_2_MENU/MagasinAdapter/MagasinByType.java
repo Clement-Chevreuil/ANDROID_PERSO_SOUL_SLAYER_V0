@@ -56,7 +56,7 @@ public class MagasinByType extends Fragment {
 
         Activity app = getActivity();
         EquipementDAO equipementDAO = new EquipementDAO(getContext());
-        List<Equipement> listEquipement = equipementDAO.allEquipement(2,getArguments().getInt("position"));
+        List<Equipement> listEquipement = equipementDAO.getEquipementBoutiqueType(getArguments().getInt("position"));
 
         TextView title = result.findViewById(R.id.TypeObjet);
         title.setText(String.valueOf(getArguments().getString("color")));

@@ -4,7 +4,7 @@ import java.util.List;
 
 public class Joueur {
 
-    public int id_joueur;
+    public int id;
     private String nom;
     public int vie_max;
     public int vie;
@@ -17,28 +17,22 @@ public class Joueur {
     public int niveau;
     public List<MonEquipement> monEquipementList;
     public String password;
-
+    int endurance;
+    int endurance_max;
     int defense;
     int precision;
-    int endurance;
     int vitesse;
-    int strenght;
-    int weight;
-    int critical;
-    int dexterity;
 
-
+    //int force;
     //FUTURE
     //nbattaque
     //defense
     //attaquemagique
     //taux reussite
-    //
-
 
     //FOR MONSTER
-    public Joueur(int id_joueur, String nom,int vie_max, int vie, int mana_max, int mana, int experience, int attaque, int etoiles) {
-        this.id_joueur = id_joueur;
+    public Joueur(int id, String nom,int vie_max, int vie, int mana_max, int mana, int experience, int attaque, int etoiles) {
+        this.id = id;
         this.nom = nom;
         this.vie_max = vie_max;
         this.vie = vie;
@@ -49,48 +43,19 @@ public class Joueur {
         this.experience = experience;
     }
 
-    //FOR MY Joueur
-    public Joueur(String nom,int vie_max, int vie, int attaque, int experience, int argent, int mana_max, int mana) {
+    //MON JOUEUR
+    public Joueur(String nom,int vie_max, int vie, int mana_max, int mana, int endurance_max, int endurance, int attaque, int defense, int precision, int vitesse, int experience, int argent) {
         this.nom = nom;
         this.vie_max = vie_max;
         this.vie = vie;
-        this.attaque = attaque;
-        this.experience = experience;
-        this.argent = argent;
         this.mana_max = mana_max;
         this.mana = mana;
-
-        if(experience != 0)
-        {
-            adaptNiveau();
-        }
-    }
-
-    //FOR MY Joueur
-    public Joueur(String nom,int vie_max, int vie, int attaque, int experience, int argent, int mana_max, int mana, int defense, int endurance, int precision, int vitesse) {
-        this.nom = nom;
-        this.vie_max = vie_max;
-        this.vie = vie;
-        this.attaque = attaque;
-        this.experience = experience;
-        this.argent = argent;
-        this.mana_max = mana_max;
-        this.mana = mana;
-        this.precision = precision;
-        this.defense = defense;
+        this.endurance_max = endurance_max;
         this.endurance = endurance;
-        this.vitesse = vitesse;
-
-        if(experience != 0)
-        {
-            adaptNiveau();
-        }
-    }
-    public Joueur(String nom,int vie_max, int vie, int attaque, int experience, int argent) {
-        this.nom = nom;
-        this.vie_max = vie_max;
-        this.vie = vie;
         this.attaque = attaque;
+        this.defense = defense;
+        this.vitesse = vitesse;
+        this.precision = precision;
         this.experience = experience;
         this.argent = argent;
 
@@ -99,27 +64,14 @@ public class Joueur {
             adaptNiveau();
         }
     }
-    public Joueur(String nom,int vie_max, int vie, int attaque) {
-        this.nom = nom;
-        this.vie_max = vie_max;
-        this.vie = vie;
-        this.attaque = attaque;
-    }
-    public Joueur(String nom, int vie, int attaque) {
-        this.nom = nom;
-        this.vie = vie;
-        this.attaque = attaque;
-    }
-    public Joueur(int id_joueur) {
-        this.id_joueur = id_joueur;
-    }
 
-    public Joueur() {
-    }
+    //CREATION RAPIDE DE LIAISON SORT - EQUIPEMENT
+    public Joueur(int id) {this.id = id;}
+    public Joueur() {}
 
     //GETTER
     public int getVie_max() { return vie_max; }
-    public int getId() { return id_joueur; }
+    public int getId() { return id; }
     public int getStars() { return etoiles; }
     public String getNom() { return nom; }
     public int getVie() { return vie; }
@@ -135,10 +87,11 @@ public class Joueur {
     public int getPrecision() { return precision; }
     public int getVitesse() { return vitesse; }
     public String getPassword() { return password; }
+    public int getEndurance_max() {return endurance_max;}
 
     //SETTER
     public void setVie_max(int vie_max) { this.vie_max = vie_max; }
-    public void setId(int id_joueur) { this.id_joueur = id_joueur; }
+    public void setId(int id) { this.id = id; }
     public void setStars(int etoiles) { this.etoiles = etoiles; }
     public void setNom(String nom) { this.nom = nom; }
     public void setVie(int vie) { this.vie = vie; }
@@ -154,6 +107,7 @@ public class Joueur {
     public void setPrecision(int precision) { this.precision = precision; }
     public void setVitesse(int vitesse) { this.vitesse = vitesse; }
     public void setPassword(String password) { this.password = password;}
+    public void setEndurance_max(int endurance_max) {this.endurance_max = endurance_max;}
 
     public Joueur createMonster2(int id)
     {

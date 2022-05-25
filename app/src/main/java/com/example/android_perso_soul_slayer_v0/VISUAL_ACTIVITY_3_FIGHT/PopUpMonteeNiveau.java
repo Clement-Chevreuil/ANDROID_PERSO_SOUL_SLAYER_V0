@@ -19,20 +19,20 @@ import androidx.fragment.app.DialogFragment;
 
 import com.example.android_perso_soul_slayer_v0.R;
 
-class PopUpNiveauUp extends DialogFragment {
+class PopUpMonteeNiveau extends DialogFragment {
 
     //private EditText mEditText;
-    private PopUpNiveauUp listener;
+    private PopUpMonteeNiveau listener;
     private Button btn;
 
 
-    public PopUpNiveauUp() {
+    public PopUpMonteeNiveau() {
         // le fragment est créé par la méthode newInstance
     }
 
-    public static PopUpNiveauUp newInstance(String title) {
+    public static PopUpMonteeNiveau newInstance(String title) {
 
-        PopUpNiveauUp frag = new PopUpNiveauUp();
+        PopUpMonteeNiveau frag = new PopUpMonteeNiveau();
         Bundle args = new Bundle();
         args.putString("title", title);
         frag.setArguments(args);

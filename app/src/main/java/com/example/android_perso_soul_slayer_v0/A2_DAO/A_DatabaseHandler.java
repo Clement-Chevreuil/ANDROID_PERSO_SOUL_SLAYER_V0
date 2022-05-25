@@ -18,6 +18,7 @@ public class A_DatabaseHandler extends SQLiteOpenHelper {
     private static final String mana = "mana";
     private static final String manaMax = "mana_max";
     private static final String endurance = "endurance";
+    private static final String enduranceMax = "endurance_max";
     private static final String defense = "defense";
     private static final String precision = "precision";
     private static final String password = "password";
@@ -34,6 +35,7 @@ public class A_DatabaseHandler extends SQLiteOpenHelper {
                     + mana + " INTEGER,"
                     + manaMax + " INTEGER,"
                     + endurance + " INTEGER,"
+                    + enduranceMax + " INTEGER,"
                     + defense + " INTEGER,"
                     + precision + " INTEGER,"
                     + vitesse + " INTEGER,"
@@ -106,24 +108,24 @@ public class A_DatabaseHandler extends SQLiteOpenHelper {
                     + monstreQuete + " INTEGER);";
 
     //MonEquipement
-    private static final String nomTableMyEquipement = "MyEquipement";
-    private static final String idMyEquipement = "id_my_equipement";
+    private static final String nomTableMonEquipement = "MonEquipement";
+    private static final String idMonEquipement = "id_mon_equipement";
     private static final String equip = "equip";
 
-    private static final String reqCreateMyEquipement =
-            "CREATE TABLE " + nomTableMyEquipement+ " ("
-                    + idMyEquipement + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+    private static final String reqCreateMonEquipement =
+            "CREATE TABLE " + nomTableMonEquipement+ " ("
+                    + idMonEquipement + " INTEGER PRIMARY KEY AUTOINCREMENT,"
                     + idJoueur + " INTEGER,"
                     + idEquipement + " INTEGER,"
                     + equip + " INTEGER);";
 
     //MonSort
-    private static final String nomTableMySort = "MySort";
-    private static final String idMySort = "id_my_sort";
+    private static final String nomTableMonSort = "MonSort";
+    private static final String idMonSort = "id_mon_sort";
 
-    private static final String reqCreateMySort =
-            "CREATE TABLE " + nomTableMySort+ " ("
-                    + idMySort + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+    private static final String reqCreateMonSort =
+            "CREATE TABLE " + nomTableMonSort+ " ("
+                    + idMonSort + " INTEGER PRIMARY KEY AUTOINCREMENT,"
                     + idJoueur + " INTEGER,"
                     + idSort + " INTEGER);";
 
@@ -136,8 +138,8 @@ public class A_DatabaseHandler extends SQLiteOpenHelper {
         db.execSQL(reqCreateEquipement);
         db.execSQL(reqCreateSort);
         db.execSQL(reqCreateQuete);
-        db.execSQL(reqCreateMyEquipement);
-        db.execSQL(reqCreateMySort);
+        db.execSQL(reqCreateMonEquipement);
+        db.execSQL(reqCreateMonSort);
 
     }
 
@@ -148,14 +150,14 @@ public class A_DatabaseHandler extends SQLiteOpenHelper {
         String reqSuppObject =  "DROP TABLE IF EXISTS " + nomTableEquipement + reqCreateEquipement;
         String reqSuppSort =  "DROP TABLE IF EXISTS " + nomTableSort + reqCreateSort;
         String reqSuppQuete =  "DROP TABLE IF EXISTS " + nomTableQuete + reqCreateQuete;
-        String reqSuppMyEquipement =  "DROP TABLE IF EXISTS " + nomTableMyEquipement + reqCreateMyEquipement;
-        String reqSuppMySort =  "DROP TABLE IF EXISTS " + nomTableMySort + reqCreateMySort;
+        String reqSuppMonEquipement =  "DROP TABLE IF EXISTS " + nomTableMonEquipement + reqCreateMonEquipement;
+        String reqSuppMonSort =  "DROP TABLE IF EXISTS " + nomTableMonSort + reqCreateMonSort;
 
         db.execSQL(reqSuppJoueur);
         db.execSQL(reqSuppObject);
         db.execSQL(reqSuppQuete);
-        db.execSQL(reqSuppMyEquipement);
-        db.execSQL(reqSuppMySort);
+        db.execSQL(reqSuppMonEquipement);
+        db.execSQL(reqSuppMonSort);
         db.execSQL(reqSuppSort);
         onCreate(db);
 

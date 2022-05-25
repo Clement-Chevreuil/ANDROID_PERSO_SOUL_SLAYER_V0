@@ -73,7 +73,7 @@ public class SortDAO extends A_DAOBase {
         this.open();
         Cursor unCurseur;
         if(i == 1) { unCurseur = mDb.rawQuery("SELECT * FROM Sort;", null); }
-        else { unCurseur = mDb.rawQuery("SELECT * FROM Speel e WHERE e.quantite_equipement != 0 AND e.id_sort NOT IN (SELECT m.id_sort FROM MySort m, Sort f WHERE m.id_sort = f.id_sort AND f.quantite_sort != -1) ;", null); }
+        else { unCurseur = mDb.rawQuery("SELECT * FROM Speel e WHERE e.quantite_equipement != 0 AND e.id_sort NOT IN (SELECT m.id_sort FROM MonSort m, Sort f WHERE m.id_sort = f.id_sort AND f.quantite_sort != -1) ;", null); }
 
         if(unCurseur.getCount() == 0) { allSort = createSort(); }
         else if (unCurseur.moveToFirst()) {

@@ -22,8 +22,8 @@ import com.example.android_perso_soul_slayer_v0.VISUAL_ACTIVITY_3_FIGHT.CombatAd
 
 public class Combat extends AppCompatActivity {
     private Button retour;
-    private ProgressBar ennemieVie, joueurVie, ennemieMana, joueurMana;
-    private TextView ennemieNom, joueurNom, pointVieEnnemie, pointVieJoueur, pointManaEnnemie, pointManaJoueur;
+    private ProgressBar ennemieVie, joueurVie, ennemieMana;
+    private TextView ennemieNom, joueurNom, pointVieEnnemie, pointVieJoueur, pointManaEnnemie, pointManaJoueur, pointEnduranceJoueur;
     private RatingBar etoiles;
     Joueur joueur, ennemie;
     
@@ -43,65 +43,61 @@ public class Combat extends AppCompatActivity {
         joueurDAO = new JoueurDAO(getBaseContext());
         monEquipementDAO = new MonEquipementDAO(getBaseContext());
 
-        joueur = joueurDAO.getMyJoueur();
-        joueur.setMonEquipementList(monEquipementDAO.getAllEquipement(2));
-
-        joueur.adaptEquip();
-
         SharedPreferences prefs = getApplicationContext().getSharedPreferences("session", MODE_PRIVATE);
         int monsterInformation = prefs.getInt("monster", -1);
 
         retour = findViewById(R.id.Retour);
         retour.setOnClickListener(abandon);
+
+        //CREATION ENNEMIE
         ennemie = new Joueur();
         ennemie = ennemie.createMonster2(monsterInformation);
 
-        pointVieEnnemie = findViewById(R.id.PointVieEnnemie);
-        pointVieJoueur = findViewById(R.id.PointVieJoueur);
-        pointManaEnnemie = findViewById(R.id.PointManaEnnemie);
-        pointManaJoueur = findViewById(R.id.PointManaJoueur);
-
-        ennemieVie = findViewById(R.id.VieEnnemie);
-        joueurVie = findViewById(R.id.VieJoueur);
-        ennemieMana = findViewById(R.id.ManaEnnemie);
-        joueurMana = findViewById(R.id.ManaJoueur);
-
+        //AFFICHAGE NOM ENNEMIE
         ennemieNom = findViewById(R.id.NomEnnemie);
-        joueurNom = findViewById(R.id.NomJoueur);
-        etoiles = findViewById(R.id.Etoiles);
-
         ennemieNom.setText(ennemie.getNom());
-        joueurNom.setText(joueur.getNom());
 
-        etoiles.setRating(ennemie.getStars());
-        etoiles.setNumStars(5);
-
+        //AFFICHAGE POINT DE VIE ENNEMIE
+        pointVieEnnemie = findViewById(R.id.PointVieEnnemie);
+        ennemieVie = findViewById(R.id.VieEnnemie);
         pointVieEnnemie.setText(ennemie.getVie() + "/" + ennemie.getVie_max());
         ennemieVie.setProgress(ennemie.getVie()*100/ennemie.getVie_max());
 
+        //AFFICHAGE MANA ENNEMIE
+        pointManaEnnemie = findViewById(R.id.PointManaEnnemie);
+        ennemieMana = findViewById(R.id.ManaEnnemie);
         pointManaEnnemie.setText(ennemie.getMana() + "/" + ennemie.getMana_max());
-        if(ennemie.getMana_max() == 0)
-        {
-            ennemieMana.setProgress(0);
-        }
-        else
-        {
-            ennemieMana.setProgress(ennemie.getMana()*100/ennemie.getMana_max());
-        }
+        if(ennemie.getMana_max() == 0) { ennemieMana.setProgress(0); }
+        else { ennemieMana.setProgress(ennemie.getMana()*100/ennemie.getMana_max()); }
 
+        //AFFICHAGE DANGEROSITE MONSTRE
+        etoiles = findViewById(R.id.Etoiles);
+        etoiles.setRating(ennemie.getStars());
+        etoiles.setNumStars(5);
 
+        //CREATION JOUEUR
+        joueur = joueurDAO.getMonJoueur();
+        joueur.setMonEquipementList(monEquipementDAO.getAllEquipement());
+        joueur.adaptEquip();
+
+        //AFFICHAGE NOM JOUEUR
+        joueurNom = findViewById(R.id.NomJoueur);
+        joueurNom.setText(joueur.getNom());
+
+        //AFFICHAGE POINT DE VIE JOUEUR
+        pointVieJoueur = findViewById(R.id.PointVieJoueur);
+        joueurVie = findViewById(R.id.VieJoueur);
         pointVieJoueur.setText(joueur.getVie() + "/" + joueur.getVie_max());
         joueurVie.setProgress(joueur.getVie()*100/joueur.getVie_max());
 
-        pointManaJoueur.setText(joueur.getMana() + "/" + joueur.getMana_max());
-        if(joueur.getMana_max() == 0)
-        {
-            joueurMana.setProgress(0);
-        }
-        else
-        {
-            joueurMana.setProgress(joueur.getMana()*100/joueur.getMana_max());
-        }
+        //AFFICHAGE MANA JOUEUR
+        pointManaJoueur = findViewById(R.id.PointManaJoueur);
+        pointManaJoueur.setText(joueur.getMana() + "/" + joueur.getMana_max() + " MANA");
+
+        //AFFICHAGE ENDURANCE JOUEUR
+        pointEnduranceJoueur = findViewById(R.id.PointEnduranceJoueur);
+        pointEnduranceJoueur.setText(joueur.getEndurance() + "/" + joueur.getEndurance_max() + " END");
+
     }
 
     private void configureViewPager(){
