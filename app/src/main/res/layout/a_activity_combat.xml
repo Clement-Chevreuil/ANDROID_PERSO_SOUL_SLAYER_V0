@@ -87,23 +87,25 @@
 
             <TableRow>
 
-                <ProgressBar
-                    android:id="@+id/ManaEnnemie"
-                    style="?android:attr/progressBarStyleHorizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:padding="5dp"
-                    android:progress="100" />
-
                 <TextView
                     android:id="@+id/PointManaEnnemie"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:layout_toRightOf="@id/ManaEnnemie"
+                    android:layout_gravity="right"
+                    android:layout_marginRight="20dp"
                     android:layout_weight="0"
-                    android:text="0/0" />
+                    android:text="0/0 MANA"
+                    android:textSize="15dp" />
+
+                <TextView
+                    android:id="@+id/PointEnduranceEnnemie"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:layout_marginRight="20dp"
+                    android:layout_weight="0"
+                    android:text="0/0 END"
+                    android:textSize="15dp" />
 
             </TableRow>
 

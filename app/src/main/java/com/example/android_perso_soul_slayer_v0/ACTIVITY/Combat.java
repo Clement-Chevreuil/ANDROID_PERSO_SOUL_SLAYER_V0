@@ -22,8 +22,8 @@ import com.example.android_perso_soul_slayer_v0.VISUAL_ACTIVITY_3_FIGHT.CombatAd
 
 public class Combat extends AppCompatActivity {
     private Button retour;
-    private ProgressBar ennemieVie, joueurVie, ennemieMana;
-    private TextView ennemieNom, joueurNom, pointVieEnnemie, pointVieJoueur, pointManaEnnemie, pointManaJoueur, pointEnduranceJoueur;
+    private ProgressBar ennemieVie, joueurVie;
+    private TextView ennemieNom, joueurNom, pointVieEnnemie, pointVieJoueur, pointManaEnnemie, pointManaJoueur, pointEnduranceJoueur, pointEnduranceEnnemie;
     private RatingBar etoiles;
     Joueur joueur, ennemie;
     
@@ -65,10 +65,11 @@ public class Combat extends AppCompatActivity {
 
         //AFFICHAGE MANA ENNEMIE
         pointManaEnnemie = findViewById(R.id.PointManaEnnemie);
-        ennemieMana = findViewById(R.id.ManaEnnemie);
-        pointManaEnnemie.setText(ennemie.getMana() + "/" + ennemie.getMana_max());
-        if(ennemie.getMana_max() == 0) { ennemieMana.setProgress(0); }
-        else { ennemieMana.setProgress(ennemie.getMana()*100/ennemie.getMana_max()); }
+        pointManaEnnemie.setText(ennemie.getMana() + "/" + ennemie.getMana_max() +" MANA");
+
+        //AFFICHAGE ENDURANCE ENNEMIE
+        pointEnduranceEnnemie = findViewById(R.id.PointEnduranceEnnemie);
+        pointEnduranceEnnemie.setText(ennemie.getEndurance() + "/" + ennemie.getEndurance_max() +" MANA");
 
         //AFFICHAGE DANGEROSITE MONSTRE
         etoiles = findViewById(R.id.Etoiles);
