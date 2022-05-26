@@ -69,7 +69,7 @@ public class Combat extends AppCompatActivity {
 
         //AFFICHAGE ENDURANCE ENNEMIE
         pointEnduranceEnnemie = findViewById(R.id.PointEnduranceEnnemie);
-        pointEnduranceEnnemie.setText(ennemie.getEndurance() + "/" + ennemie.getEndurance_max() +" MANA");
+        pointEnduranceEnnemie.setText(ennemie.getEndurance() + "/" + ennemie.getEndurance_max() +" END");
 
         //AFFICHAGE DANGEROSITE MONSTRE
         etoiles = findViewById(R.id.Etoiles);

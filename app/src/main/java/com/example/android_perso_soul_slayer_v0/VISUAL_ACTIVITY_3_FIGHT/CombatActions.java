@@ -191,11 +191,15 @@ public class CombatActions {
         }
     }
 
+    public void gestionEndurance(Joueur perso, int endurance){}
+
     public void tourEnnemie(int timer) {
-        if (ennemie.getEndurance() <= 0) {
+        if (ennemie.getEndurance() > 0) {
             Handler handler = new Handler();
             handler.postDelayed(new Runnable() {
                 public void run() {
+                    ennemie.setEndurance(ennemie.getEndurance() - 1);
+                    pointEnduranceEnnemie.setText(ennemie.getEndurance() + "/" + ennemie.getEndurance_max() + "END");
                     attaqueEnemmie();
                 }
             }, timer);
@@ -203,6 +207,8 @@ public class CombatActions {
             String text = "L'ennemie ne peut pas attaquer, c'est le moment de lui porter un coup";
             showText(text);
             ennemie.setEndurance(ennemie.getEndurance() + 1);
+            pointEnduranceJoueur.setText(ennemie.getEndurance() + "/" + ennemie.getEndurance_max() + "END");
+            viewPager.setVisibility(ViewPager.VISIBLE);
         }
     }
 
@@ -277,6 +283,8 @@ public class CombatActions {
         thread.start();
         return text.length() * 50 + 1500;
     }
+
+    public void afficherActions(String text){}
 
     public void gagner() {
         ennemieVie.setProgress(0);

@@ -31,7 +31,7 @@ public class Joueur {
     //taux reussite
 
     //FOR MONSTER
-    public Joueur(int id, String nom,int vie_max, int vie, int mana_max, int mana, int experience, int attaque, int etoiles) {
+    public Joueur(int id, String nom,int vie_max, int vie, int mana_max, int mana, int endurance, int endurance_max, int experience, int attaque, int etoiles) {
         this.id = id;
         this.nom = nom;
         this.vie_max = vie_max;
@@ -41,6 +41,8 @@ public class Joueur {
         this.mana_max = mana_max;
         this.mana = mana;
         this.experience = experience;
+        this.endurance = endurance;
+        this.endurance_max = endurance_max;
     }
 
     //MON JOUEUR
@@ -115,43 +117,43 @@ public class Joueur {
 
         if(id == 2)
         {
-            monster = new Joueur(2,"GOBLIN",1,1,0,0,1,1,1);
+            monster = new Joueur(2,"GOBLIN",1,1,0,0,3,3,1,1,1);
         }
         else if(id == 3)
         {
-            monster = new Joueur(3,"GOBLIN ARCHER",2,2,0,0,2,3,1);
+            monster = new Joueur(3,"GOBLIN ARCHER",2,2,0,0,3,3,2,3,1);
         }
         else if(id == 4)
         {
-            monster = new Joueur(4,"GOBLIN EPEISTE",3,3,1,1,2,2,1);
+            monster = new Joueur(4,"GOBLIN EPEISTE",3,3,1,1,3,3,2,2,1);
         }
         else if(id == 5)
         {
-            monster = new Joueur(5,"GOBLIN MAGE",3,3,3,3,3,1,1);
+            monster = new Joueur(5,"GOBLIN MAGE",3,3,3,3,3,3,3,1,1);
         }
         else if(id == 6)
         {
-            monster = new Joueur(6,"GOBLIN TROUPE",5,5,0,0,5,5,2);
+            monster = new Joueur(6,"GOBLIN TROUPE",5,5,0,0,3,3,5,5,2);
         }
         else if(id == 7)
         {
-            monster = new Joueur(7,"HOBGOBLIN",8,8,0,0,4,4,2);
+            monster = new Joueur(7,"HOBGOBLIN",8,8,0,0,3,3,4,4,2);
         }
         else if(id == 8)
         {
-            monster = new Joueur(8,"GOBLIN PALADIN",1,1,1,1,1,1,1);
+            monster = new Joueur(8,"GOBLIN PALADIN",1,1,1,1,3,3,1,1,1);
         }
         else if(id == 9)
         {
-            monster = new Joueur(9,"GOBLIN CHAMPION",1,1,1,1,1,1,1);
+            monster = new Joueur(9,"GOBLIN CHAMPION",1,1,1,1,3,3,1,1,1);
         }
         else if(id == 10)
         {
-            monster = new Joueur(10,"GOBLIN SEIGNEUR",1,1,1,1,1,1,1);
+            monster = new Joueur(10,"GOBLIN SEIGNEUR",1,1,1,1,3,3,1,1,1);
         }
         else
         {
-            monster = new Joueur(99,"ERROR",999,999,999,999,999,999,5);
+            monster = new Joueur(99,"ERROR",999,999,999,999,999,999,999,999,5);
         }
         return monster;
     }
